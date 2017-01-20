@@ -16,18 +16,18 @@ latest-change.txt
 settings_local.py
 
 #Pl specific
-public/index.html
-public/styleguide/*
-public/styleguide/html/styleguide.html
-public/styleguide/css/*.css
-public/_js/lib/modernizr.*
-public/_js/patternlab-*
-public/js/*
-public/css/*
-public/patterns/*
-public/data/*
-public/css/style.css.map
-public/annotations/*
+patternlab/public/index.html
+patternlab/public/styleguide/*
+patternlab/public/styleguide/html/styleguide.html
+patternlab/public/styleguide/css/*.css
+patternlab/public/_js/lib/modernizr.*
+patternlab/public/_js/patternlab-*
+patternlab/public/js/*
+patternlab/public/css/*
+patternlab/public/patterns/*
+patternlab/public/data/*
+patternlab/public/css/style.css.map
+patternlab/public/annotations/*
 patternlab.json
 *.cache/
 *.map

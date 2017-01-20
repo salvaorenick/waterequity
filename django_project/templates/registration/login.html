@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Login {% endblock %}
+{% block body %}
+
+<div class="container-fluid background--medium-blue">
+    <div class="row">
+        <div class="col-md-12 color--white container_padding--medium ">
+            <div class="col-md-5 col-md-offset-1 center-block invest-form-special">
+		<form method="post" action=".">
+  		{% csrf_token %}
+
+   		{% for field in form %}
+        		<label>{{ field.label }}</label>
+        		{% if field.errors %}
+            			{{ field.errors }}
+        		{% endif %}
+        		{{ field }}<br><br>
+    		{% endfor %}
+    			<input type="hidden" name="next" value="{{ next }}" />
+    			<input class="btn" style="float:left" type="submit" value="Login" />
+		</form>
+	    </div>
+	</div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,274 @@
+header {
+    margin-bottom: 70px;
+    .navbar {
+        font: 16px $font-base-strong;
+        margin-bottom: 0;
+        z-index: 3;
+        background-color: white;
+        padding: 0 15px;
+        border-bottom: 1px solid $xtra-light-blue;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        border-radius: 0 !important;
+        -webkit-transition: all 250ms ease-in-out;
+        transition: all 250ms ease-in-out;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        &.hide-nav {
+            -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+            overflow: hidden;
+        }
+
+        @media (min-width: 968px) and (max-width: 1024px) {
+            padding-left: 0;
+        }
+    }
+    .navbar-header {
+        .navbar-left {
+            > img {
+                width: 264px;
+                height: 69px;
+                padding: 11px 0 8px;
+
+                @media (max-width: 440px) {
+                    width: calc(100% - 60px);
+                }
+
+                @media (min-width: 968px) and (max-width: 1024px) {
+                    width: 250px;
+                    height: 65px;
+                }
+            }
+
+            @media (min-width: 992px) {
+                float: left;
+            }
+        }
+    }
+    .container-fluid {
+        padding-top: 1px;
+        padding-bottom: 6px;
+        align-items: center;
+        .navbar-toggle {
+            margin-top: 17px;
+            margin-right: 0;
+            border: 1px solid $brand-blue;
+            .icon-bar {
+                background: $brand-blue;
+            }
+        }
+        ul.nav.navbar-nav {
+            margin-top: 17px;
+            font-family: 'GothamBook', GothamBook, sans-serif;
+            li {
+                position: static;
+                float: left;
+                margin-left: 16px;
+                list-style-type: none;
+                font: 16px $font-base-strong;
+                > a,
+                > span.dropdown-toggle {
+                    color: $brand-dark-blue;
+                    text-decoration: none;
+                    padding: 8px 12px 9px;
+                    display: block;
+                    position: relative;
+                    cursor: pointer;
+                    background-color: transparent;
+                    &::after {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        width: 100%;
+                        left: 0;
+                        bottom: 0;
+                        height: 3px;
+                        background-color: transparent;
+                        z-index: 1001;
+
+                        @include transition ( background-color 250ms ease-in-out );
+
+                        @media (min-width: 768px) {
+                            bottom: -18px;
+                            left: 12px;
+                            width: calc(100% - 24px);
+                        }
+                    }
+                    ul li a::after {
+                        @media (min-width: 768px) {
+                            bottom: -15px;
+                        }
+                    }
+                }
+                span.dropdown-toggle {
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 13px;
+                        right: 12px;
+                        background-image: url(../images/caret.svg);
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        height: 9px;
+                        width: 14px;
+                        -webkit-transform: scale(1, 1);
+                        -moz-transform: scale(1, 1);
+                        -ms-transform: scale(1, 1);
+                        transform: scale(1, 1);
+                        filter: progid:dximagetransform.microsoft.basicimage(rotation=3);
+
+                        @include transition( transform 150ms ease-out );
+
+                        @media (min-width: 768px) {
+                            right: -4px;
+                        }
+                    }
+                    &::after {
+                        @media (min-width: 768px) {
+                            left: 0;
+                            width: calc(100% - 16px);
+                        }
+                    }
+
+                    @media (min-width: 768px) {
+                        padding: 9px 16px 9px 0;
+                    }
+                }
+                a:hover,
+                span.dropdown-toggle:hover,
+                &.active > a,
+                &.open > a {
+                    &::after {
+                        background-color: $brand-dark-blue;
+                    }
+                }
+                &.active a.btn {
+                    background-color: $brand-dark-blue;
+                }
+                a.btn {
+                    color: white;
+                    background-color: $light-blue;
+                    &:hover,
+                    .active & {
+                        background-color: $brand-dark-blue;
+                    }
+                    &::after {
+                        width: 100%;
+                        left: 0;
+                    }
+                }
+
+                .dropdown-menu {
+                    width: 100%;
+                    border: none;
+                    border-radius: 0;
+                    background: white;
+
+                    @media (min-width: 768px) {
+                        position: absolute;
+                        padding: 15px 0;
+                        border-top: 1px solid $light-grey;
+                        right: 0;
+                        left: 0;
+                        top: 71px;
+                        ul {
+                            float: right;
+                            margin-right: 15px;
+                            li a::after {
+                                bottom: -15px;
+                            }
+                        }
+                    }
+
+                    @media (min-width: 768px) and (max-width: 1023px) {
+                        top: 125px;
+                        border-bottom: 1px solid $light-grey;
+                    }
+
+                    @media (max-width: 767px) {
+                        margin-left: -40px;
+                        li:last-child {
+                            border: none;
+                        }
+                    }
+                }
+
+                &.open > span,
+                &.active > span {
+                    &::after {
+                        background-color: $brand-dark-blue;
+                    }
+                }
+                &.open > span::before {
+                    -webkit-transform: scale(1, -1);
+                    -moz-transform: scale(1, -1);
+                    -ms-transform: scale(1, -1);
+                    transform: scale(1, -1);
+                    filter: progid:dximagetransform.microsoft.basicimage(rotation=3);
+                }
+
+                @media (max-width: 767px) {
+                    display: block;
+                    width: 100%;
+                    margin-left: 0;
+                    border-bottom: 1px solid $light-grey;
+                }
+            } // end of li
+            > li:last-child {
+                @media (min-width: 768px) {
+                    margin-left: 30px;
+                    i {
+                        position: relative;
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            z-index: 2;
+                            left: -14px;
+                            top: -4px;
+                            width: 1px;
+                            height: 44px;
+                            background-color: $light-grey;
+                        }
+                    }
+                }
+            }
+
+            > li:first-child {
+                margin-left: 0;
+            }
+
+            @media (max-width: 767px) {
+                width: 100%;
+                margin: 0 0 4px;
+            }
+
+            @media (max-width: 992px) {
+                margin-top: 12px;
+                background: white;
+            }
+        } // end of ul
+
+        @media (min-width: 968px) and (max-width: 1044px) {
+            padding-left: 4px;
+            padding-right: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-collapse.in {
+                overflow-y: initial;
+            }
+            > li:last-child {
+                a {
+                    color: red;
+                }
+            }
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 992px) {
+        padding-bottom: 0;
+        margin-bottom: 66px;
+    }
+}

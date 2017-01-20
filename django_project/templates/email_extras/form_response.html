@@ -1,0 +1,19 @@
+{% extends "email_extras/base.html" %}
+
+{% block main %}
+{% if message %}
+{% autoescape off %}
+{{ message }}
+{% endautoescape %}
+{% endif %}
+<br>
+<br>
+<table align="left" border="0" cellspacing="0" cellpadding="0" width="400" style="border-top-width:1px;border-top-color:#eff7fc;border-top-style:solid; width:400px;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;line-height:1em;text-align:left;">
+<tr><td>
+<h3 style="font-family:GothamLight, sans-serif;font-size:16x;font-weight:normal;line-height:16px;text-align:left;">Form submission details:</h3>
+{% for field, value in fields %}
+    <p style="font-family:GothamLight, sans-serif;font-size:14px;font-weight:normal;line-height:16px;text-align:left;">{{ field }}:<br>{{ value }}</p>
+{% endfor %}
+<tr></td>
+</table>
+{% endblock %}

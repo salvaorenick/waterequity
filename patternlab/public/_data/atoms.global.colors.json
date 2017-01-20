@@ -1,0 +1,69 @@
+{
+    "colors": [
+        {
+            "groupname": "Brand",
+            "swatches": [
+                {
+                    "name": "brand-blue",
+                    "colorCode": "#42B4E3"
+                },
+                {
+                    "name": "brand-dark-blue",
+                    "colorCode": "#1B3C6D"
+                }
+            ]
+        },{
+            "groupname": "Utility",
+            "swatches": [
+                {
+                    "name": "xtra-light-blue",
+                    "colorCode": "#EFF7FC"
+                },
+                {
+                    "name": "light-blue",
+                    "colorCode": "rgba(99, 176, 229, 0.85)"
+                },
+                {
+                    "name": "medium-blue",
+                    "colorCode": "#63B1E5"
+                },
+                {
+                    "name": "subtle-blue",
+                    "colorCode": "#1397E1"
+                },
+                {
+                    "name": "brand-variant-blue",
+                    "colorCode": "#1458a3"
+                },
+                {
+                    "name": "subtle-dark-blue",
+                    "colorCode": "#33588D"
+                },
+                {
+                    "name": "brand-dark-blue",
+                    "colorCode": "#1B3C6D"
+                }
+            ]
+        },{
+            "groupname": "Grayscale",
+            "swatches": [
+                {
+                    "name": "black",
+                    "colorCode": "#000000"
+                },
+                {
+                    "name": "grey",
+                    "colorCode": "#4a4a4a"
+                },
+                {
+                    "name": "light-grey",
+                    "colorCode": "#dddddd"
+                },
+                {
+                    "name": "white",
+                    "colorCode": "#ffffff"
+                }
+            ]
+        }
+    ]
+}

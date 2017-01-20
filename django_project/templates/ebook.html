@@ -1,0 +1,49 @@
+{% extends "landing-page-base.html" %}
+{% load forms_builder_tags %}
+
+{% block title %} |
+Make an Impact
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid hero img-bg" style="background-image: url(https://waterequity.s3.amazonaws.com/media/filer_public/67/cc/67cc262c-b625-475d-b77f-ea627908977f/lugging-water.jpg);background-attachment: fixed">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 center-block text-center">
+                <h2 class="color--white ribbon-bg">Find out how<br>WaterEquity Works</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container container_padding--medium">
+    <div class="row vertical-center-wrapper">
+        <div class="col-md-6">
+            <img class="img-responsive" src="https://waterequity.s3.amazonaws.com/media/filer_public/5d/c8/5dc8a0a0-62bd-48ab-9c4f-b9a9281c33fd/we_ebook_mockup.png" alt="waterequity ebook" />
+        </div>
+        <div class="col-md-6">
+            <h2>Investing to End the Global Water Crisis</h2>
+            <p>Download our informational ebook to learn more about WaterEquity's proven investment model, and get details on the investment funds already at work around the world, plus how you can join the movement.</p>
+        </div>
+    </div>
+</div>
+<div class="container-fluid container_padding--medium background--light-blue text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 color--white center-block text-center">
+            <form action="/forms/ebook/" method="post">
+	{% csrf_token %}
+                <p><input class="text-center charfield required" id="id_name" maxlength="2000" name="name" placeholder="NAME" type="text" required /></p>
+                <p><input class="text-center emailfield required" id="id_email" maxlength="2000" name="email" placeholder="EMAIL" type="email" required /></p>
+                <p class="col-md-11 center-block"><label for="id_are_you_an_accredited_investor_or_a_representative_of_a_grant_0"><br>Are you an accredited investor or a representative of an accredited investor?</label>
+                      <label class="radio-inline" for="id_are_you_an_accredited_investor_or_a_representative_of_a_grant_0"><input class="choicefield required" id="id_are_you_an_accredited_investor_or_a_representative_of_a_grant_0" name="are_you_an_accredited_investor_or_a_representative_of_a_grant" type="radio" value="Yes" required /> Yes</label> &nbsp;
+		<label class="radio-inline" for="id_are_you_an_accredited_investor_or_a_representative_of_a_grant_1"><input class="choicefield required" id="id_are_you_an_accredited_investor_or_a_representative_of_a_grant_1" name="are_you_an_accredited_investor_or_a_representative_of_a_grant" type="radio" value="No" required /> No</label>
+		<label class="radio-inline" for="id_are_you_an_accredited_investor_or_a_representative_of_a_grant_2"><input class="choicefield required" id="id_are_you_an_accredited_investor_or_a_representative_of_a_grant_2" name="are_you_an_accredited_investor_or_a_representative_of_a_grant" type="radio" value="Not sure" required /> Not sure</label>
+                <div style="clear:left;">&nbsp;</div>
+                <input class="btn" type="submit" value="Get the ebook">
+            </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

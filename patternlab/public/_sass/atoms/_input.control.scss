@@ -1,0 +1,310 @@
+@charset "UTF-8";
+/*----------------------------------------------------------------------------*\
+    INPUT.CONTROL
+    Friendlier HTML form controls with a little CSS magic.
+\*----------------------------------------------------------------------------*/
+
+/*  Variables
+\*----------------------------------------------------------------------------*/
+
+$control-width: 2.5em !default;
+$control-space: $control-width*1.5 !default;
+$control-line-height: $control-space !default;
+$control-border-width: 0 !default;
+
+// Colors
+$control-label-color: $brand-dark-blue !default;
+$control-border-color: none !default;
+$control-background-color: $subtle-dark-blue !default;
+$control-focus-color: $brand-dark-blue !default;
+$control-error-color: $brand-blue !default;
+$control-disabled-color: lightgray !default;
+
+label {
+    display: block;
+    max-width: 100%;
+    margin-bottom: 0;
+}
+
+form {
+    p {
+        margin-bottom: 12px;
+        position: relative;
+        span {
+            position: absolute;
+            top: 9px;
+            right: -10px;
+        }
+        label.radio-inline span {
+            display: none;
+        }
+    }
+    ul {
+        list-style-type: none;
+        margin-left: -40px;
+        li {
+            float: left;
+            margin-right: 16px;
+        }
+    }
+    .color--white & {
+        input,
+        textarea {
+            color: $brand-dark-blue;
+        }
+    }
+    textarea {
+        text-align: left;
+        height: 80px;
+        padding: 4px;
+        max-width: 100%;
+        width: 100%;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"] {
+        width: 100%;
+    }
+    input[type="submit"] {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+
+/*  Component
+\*----------------------------------------------------------------------------*/
+
+form {
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+    input {
+        display: block;
+        width: 100%;
+    }
+    p {
+        .news-form & {
+            text-align: center;
+            line-height: 1em;
+        }
+    }
+    .news-form & {
+        .radio input[type="radio"],
+        .radio-inline input[type="radio"] {
+            margin-top: 4px;
+        }
+    }
+}
+
+input {
+    .news-form & {
+        position: relative;
+        display: inline-block;
+        padding-left: 0;
+        color: white;
+        line-height: $control-line-height;
+        cursor: pointer;
+        outline: none;
+        text-align: center;
+        border: none;
+        background-color: $control-background-color;
+        margin-bottom: 16px;
+        &:placeholder {
+            color: $medium-blue;
+            opacity: 1;
+            text-align: center;
+        }
+        &::-webkit-input-placeholder {
+            color: $medium-blue;
+        }
+        &[type="submit"] {
+            background-color: $subtle-blue;
+            line-height: 1em;
+            color: white;
+            border-color: $subtle-blue;
+            padding: 24px;
+            &:hover,
+            &:active {
+                background-color: white;
+                color: $brand-dark-blue;
+                border: solid 1px $brand-dark-blue;
+            }
+        }
+    }
+}
+
+.invest-form-special {
+    h1 {
+        display: none;
+    }
+    padding-bottom: 54px !important;
+}
+
+/**
+ * Actual input, needs to be hidden but not removed from rendering
+ */
+.control__input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+
+
+/*  Indicator
+    Visual representation of the input
+\*----------------------------------------------------------------------------*/
+
+.control__indicator {
+    position: absolute;
+    top: $control-line-height/2;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 0;
+    display: block;
+    width: $control-width;
+    height: $control-width;
+    line-height: $control-width;
+    border: $control-border-width solid $control-border-color;
+    text-align: center;
+    background-color: $control-background-color;
+    user-select: none;
+}
+
+
+
+/*  States
+\*----------------------------------------------------------------------------*/
+
+/**
+ * Checked/active
+ */
+.control.is-checked .control__indicator,
+.control__input:checked ~ .control__indicator,
+.control__input:active ~ .control__indicator {
+    color: $control-background-color;
+    border-color: $control-focus-color;
+}
+
+
+/**
+ * Focus
+ */
+.control__input:focus,
+.control.is-checked .control__input:focus,
+.control__input:checked:focus,
+.control__input:active:focus {
+    ~ .control__indicator {
+        border-color: $control-focus-color;
+    }
+}
+
+
+/**
+ * Disabled
+ */
+.control.is-disabled {
+    cursor: not-allowed;
+}
+
+.control.is-disabled .control__indicator,
+.control__input:disabled ~ .control__indicator,
+.control.is-checked.is-disabled .control__indicator,
+.control .control__input:checked:disabled ~ .control__indicator {
+    border-color: $control-disabled-color;
+    background-color: $control-disabled-color;
+    cursor: not-allowed;
+}
+
+.control.is-disabled .control__label,
+.control__input:disabled ~ .control__label {
+    color: $control-disabled-color;
+    cursor: not-allowed;
+}
+
+
+
+/*  Modifiers
+\*----------------------------------------------------------------------------*/
+
+/**
+ * Checkbox
+ */
+.control--checkbox {
+    .control__indicator {
+
+        &::after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            content: " ";
+            background-color: transparent;
+        }
+    }
+
+    &.is-checked .control__indicator,
+    .control__input:checked ~ .control__indicator {
+        border-color: $control-focus-color;
+
+        &::after {
+            background-color: $control-focus-color;
+            width: 80%;
+            height: 80%;
+        }
+    }
+}
+
+
+
+/**
+ * Radio
+ */
+
+.radio-inline { // bootstrap label wrap input
+    margin-bottom: 16px;
+}
+
+.radio input[type="radio"],
+.radio-inline input[type="radio"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"] {
+    margin-top: 9px;
+}
+
+//
+// .control--radio {
+//     .control__indicator {
+//         border-radius: 50%;
+//
+//         &::after {
+//             position: absolute;
+//             top: 50%;
+//             left: 50%;
+//             transform: translate(-50%, -50%);
+//             width: 0;
+//             height: 0;
+//             content: " ";
+//             border-radius: 50%;
+//             background-color: transparent;
+//         }
+//     }
+//
+//     &.is-checked .control__indicator,
+//     .control__input:checked ~ .control__indicator {
+//         border-color: $control-focus-color;
+//
+//         &::after {
+//             background-color: $control-focus-color;
+//             width: 80%;
+//             height: 80%;
+//         }
+//     }
+// }

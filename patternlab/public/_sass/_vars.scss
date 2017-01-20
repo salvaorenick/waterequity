@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body.body {
+    @media (min-width: 1024px) {
+        padding-bottom: 438px;
+        position: relative;
+        .daytonz-coolio {
+            position: relative;
+            z-index: 2;
+            background-color: white;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.275);
+        }
+        footer.footer {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            overflow: hidden;
+            height: 438px;
+        }
+    }
+}
+
+/*----------------------------------------------------------------------------*\
+    $VARS
+    Any variables you find set in your framework that you do not wish
+    to keep, simply redefine here. This means that if the framework, for example,
+    sets your `$base-font-size` at 16px and you wish it to be 14px, simply
+    redeclare that variable in this file.
+\*----------------------------------------------------------------------------*/
+
+/*----------------------------------------------------------------------------*\
+    $OVERRIDES
+    Place any variables that should override defaults here.
+\*----------------------------------------------------------------------------*/
+.center-block {
+    float: none;
+}
+
+.row-eq-height {
+    display: flex;
+
+    @media (max-width: 771px) {
+        display: block;
+    }
+}
+
+.close {
+    color: #4a4a4a;
+}
+
+
+/*----------------------------------------------------------------------------*\
+    $CUSTOM
+    Place any of your own variables that sit on top of the framework here.
+\*----------------------------------------------------------------------------*/
+
+/*  Typography
+\*----------------------------------------------------------------------------*/
+
+$font-base: 'GothamLight', sans-serif !default;
+$font-base-strong: 'GothamBook', sans-serif !default;
+$font-secondary: 'GothamBook', sans-serif !default;
+$font-cta: 'GothamMedium', sans-serif;
+$font-heading: 'GothamBold', sans-serif;
+
+
+
+/*  Colors
+\*----------------------------------------------------------------------------*/
+
+$black: #000000 !default;
+$white: #ffffff !default;
+$grey: #4a4a4a;
+$light-grey: #dddddd;
+$brand-blue: #42b4e3;
+$brand-dark-blue: #1b3c6d;
+$light-blue: rgba(99, 176, 229, 0.85);
+$xtra-light-blue: #eff7fc;
+$medium-blue: #63b1e5;
+$brand-variant-blue: #1458a3;
+$subtle-blue: #1397e1;
+$subtle-dark-blue: #33588d;
+
+
+@mixin transition($args...) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}

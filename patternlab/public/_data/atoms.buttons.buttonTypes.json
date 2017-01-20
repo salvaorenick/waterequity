@@ -1,0 +1,54 @@
+{
+    "buttonTypes": [
+        {
+            "button": {
+                "type": "button",
+                "title": "Primary button",
+                "href": false,
+                "modifier": "",
+                "label": "Primary button",
+                "isDisabled": false
+            }
+        },
+        {
+            "button": {
+                "type": "button",
+                "title": "Primary Active/Hover button",
+                "href": false,
+                "modifier": "active",
+                "label": "Primary Active/Hover button",
+                "isDisabled": false
+            }
+        },
+        {
+            "button": {
+                "type": "button",
+                "title": "Disabled button",
+                "href": false,
+                "modifier": "",
+                "label": "Disabled button",
+                "isDisabled": true
+            }
+        },
+        {
+            "button": {
+                "type": "button",
+                "title": "Nav button",
+                "href": false,
+                "modifier": "nav",
+                "label": "Nav button",
+                "isDisabled": false
+            }
+        },
+        {
+            "button": {
+                "type": "button",
+                "title": "Nav Active/Hover button",
+                "href": false,
+                "modifier": "nav active",
+                "label": "Nav Active/Hover button",
+                "isDisabled": false
+            }
+        }
+    ]
+}

@@ -1,0 +1,136 @@
+@charset "UTF-8";
+/*----------------------------------------------------------------------------*\
+    $TYPOGRAPHY
+\*----------------------------------------------------------------------------*/
+
+/*  Toplevel elements
+\*----------------------------------------------------------------------------*/
+
+html,
+body {
+    font: 18px/1.5em $font-base;
+    color: $grey;
+}
+
+// h1 {
+//
+// }
+h2 {
+    font-size: 30px;
+    line-height: 38px;
+    margin-bottom: 1.3em;
+    .background--medium-blue & {
+        color: white;
+    }
+    .hero & {
+        font-family: $font-cta;
+    }
+}
+
+h3 {
+    font-size: 20px;
+    line-height: 28px;
+}
+
+h4 {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+h2,
+h4 {
+    text-transform: uppercase;
+}
+
+p {
+    margin-bottom: 1.8em;
+    line-height: 2em;
+}
+
+blockquote {
+    border-left: none;
+    padding: 10px 10px 10px 52px;
+    margin: 0 0 20px 20px;
+    position: relative;
+    footer {
+        font-size: 92%;
+        color: inherit;
+        margin-top: 1em;
+    }
+
+    &::before {
+        content: "“";
+        font-size: 7em;
+        top: 47px;
+        left: -42px;
+        position: absolute;
+        font-family: "GothamBold-Italic", serif;
+        color: #63b1e5;
+    }
+}
+
+/*  Font families
+\*----------------------------------------------------------------------------*/
+
+.font-base-strong,
+strong {
+    font-family: $font-base-strong;
+}
+
+.font-secondary {
+    font-family: $font-secondary;
+}
+
+.font-cta,
+h4 {
+    font-family: $font-cta;
+}
+
+.font-heading,
+h3 {
+    font-family: $font-heading;
+}
+
+.ribbon-bg {
+    line-height: 50px;
+    padding: 4px 24px 0;
+    margin-top: 0;
+    background: rgba(99, 176, 229, 0.85); // for fallback
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent,
+            transparent 6px,
+            rgba(99, 176, 229, 0.85) 6px,
+            rgba(99, 176, 229, 0.85) 50px
+       );
+
+    @media (max-width: 767px) {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        margin-bottom: 0;
+        // margin-left: -40%;
+        padding-left: 12px;
+        padding-right: 12px;
+        background:
+            repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 6px,
+                rgba(99, 176, 229, 0.85) 6px,
+                rgba(99, 176, 229, 0.85) 30px
+            );
+        font-size: 20px;
+        line-height: 30px;
+    }
+}
+
+.font-reduce-size-for-mobile {
+    @media (max-width: 768px) {
+        font-size: 1.2em;
+        padding-top: 1em;
+    }
+}

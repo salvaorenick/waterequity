@@ -1,0 +1,84 @@
+@charset "UTF-8";
+/*----------------------------------------------------------------------------*\
+    $COLORS
+    Colors to use throughout your project
+    see _vars.scss for rgb/hex values
+\*----------------------------------------------------------------------------*/
+
+/*  Text colors
+\*----------------------------------------------------------------------------*/
+
+.color--black {
+    color: $black;
+}
+
+.color--white {
+    color: $white;
+}
+
+.grey {
+    color: $grey;
+}
+
+.brand-blue {
+    color: $brand-blue;
+}
+
+.brand-dark-blue {
+    color: $brand-dark-blue;
+}
+
+.brand-variant-blue {
+    color: $brand-variant-blue;
+}
+
+/*  Background colors
+\*----------------------------------------------------------------------------*/
+
+.background--black {
+    background-color: $black;
+}
+
+.background--grey {
+    background-color: $grey;
+}
+
+.background--light-grey {
+    background-color: $light-grey;
+}
+
+.background--white {
+    background-color: $white;
+}
+
+.background--brand-blue {
+    background-color: $brand-blue;
+}
+
+.background--brand-dark-blue {
+    background-color: $brand-dark-blue;
+}
+
+.background--light-blue {
+    background-color: $light-blue;
+}
+
+.background--xtra-light-blue {
+    background-color: $xtra-light-blue;
+}
+
+.background--medium-blue {
+    background-color: $medium-blue;
+}
+
+.background--brand-variant-blue {
+    background-color: $brand-variant-blue;
+}
+
+.background--subtle-blue {
+    background-color: $subtle-blue;
+}
+
+.background--subtle-dark-blue {
+    background-color: $subtle-dark-blue;
+}

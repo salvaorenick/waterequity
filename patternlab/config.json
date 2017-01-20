@@ -27,9 +27,9 @@
             "bower" : "./public/bower_components/"
         },
         "django_project" : {
-            "root": "./django_project/",
-            "css": "./django_project/static/css/",
-            "js": "./django_project/static/js/"
+            "root": "./../django_project/",
+            "css": "./../django_project/static/css/",
+            "js": "./../django_project/static/js/"
         }
     },
     "styleGuideExcludes": [

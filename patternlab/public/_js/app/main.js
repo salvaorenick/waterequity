@@ -1,7 +1,7 @@
 'use strict';
 
 /*jshint unused:false */
-/*global Vimeo, e */
+/*global Vimeo, e, ga */
 
 // unfix and fix header on scroll
 $(function() {
@@ -125,6 +125,17 @@ $(function() {
 
             player.unload();
         });
+        try {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Videos',
+                eventAction: 'play',
+                eventLabel: player.element.src
+            });
+        }
+        catch (e){
+            // console.log(e);
+        }
         return false;
     });
 });

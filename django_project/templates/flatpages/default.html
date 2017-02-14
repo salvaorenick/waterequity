@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %} | 
-{{ flatpage.title }}
+{% block title %} | {{ flatpage.title }}
 {% endblock %}
 
 {% block body %}
-{{ flatpage.content }}
+{% load allow_tags %}
+{% allow_tags flatpage.content %}
 {% endblock %}

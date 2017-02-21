@@ -1,14 +1,18 @@
 {{#inputRadio}}
-<label class="control  control--radio  js--control  {{inputRadio.modifier}}">
-    <input
-        class="control__input  js--control__input"
-        id="{{inputRadio.id}}"
-        name="{{inputRadio.name}}"
-        type="radio"
-        {{#inputRadio.isChecked}}checked{{/inputRadio.isChecked}}
-        {{#inputRadio.isDisabled}}disabled{{/inputRadio.isDisabled}}
-    >
-    <span class="control__indicator"></span>
-    <span class="control__label">{{{inputRadio.label}}}</span>
+<div data-toggle="buttons">
+<label class="radio-inline radio btn" for="25">
+    <input type="radio"
+        name="amount"
+        id="25"
+        value="25"
+        required/> Button style inline radio
 </label>
+<label class="radio-inline radio btn active" for="55">
+    <input type="radio"
+        name="amount"
+        id="55"
+        value="25"
+        checked /> Button style inline radio selected
+</label>
+</div>
 {{/inputRadio}}

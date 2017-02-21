@@ -1,7 +1,19 @@
-'use strict';
+/* Contents:
+    - eslint helpers
+    - unfix and fix header on scroll
+    - add active class to nav button matching page
+    - cup drop on challenge page
+    - add asterisk to required fields
+    - make loan form helper
+    - Vimeo overlay, autoplay and close with video stop
+    - on staff hover, others go black and white with css class
 
-/*jshint unused:false */
-/*global Vimeo, e, ga */
+*/
+
+/*eslint no-unused-vars: ["error", { "vars": "local" }]*/
+/*global Vimeo, event, ga */
+
+'use strict';
 
 // unfix and fix header on scroll
 $(function() {
@@ -26,7 +38,7 @@ $(function() {
 
         };
 
-    $(window).scroll(function(e){
+    $(window).scroll(function(event){ // eslint-disable-line
         scrollTimeOut = true;
     });
 
@@ -99,6 +111,36 @@ $(function() {
     }
 });
 
+// make loan form helper. toggle active class for radio and set its value with associated text input for the
+$('.input-value').focus(function() {
+    $(this).closest('.form-group').children('label').removeClass('active');
+    $('#radio-value').parent('label').addClass('active');
+});
+
+$('.input-value').change(function() {
+    $('#radio-value').val($(this).val());
+});
+
+// make loan razzle dazzle. form sticks to the bottom of the page and pops up when a button is clicked
+if ($('#make-loan').length) {
+    var loanForm = $('#make-loan'),
+        loanFormPreviousDiv = loanForm.prev(),
+        setLoanFormAtBottom = function() {
+            loanForm.addClass('fix').css({
+                'top': $(window).height() - 190,
+                'height': 190
+            });
+        },
+        animateLoanFormUp = function() {
+
+        },
+        displayLoanForm = function() {
+
+        };
+
+    setLoanFormAtBottom();
+}
+
 // Vimeo overlay, autoplay and close with video stop
 $(function() {
     var player, overlay, container;
@@ -133,8 +175,8 @@ $(function() {
                 eventLabel: player.element.src
             });
         }
-        catch (e){
-            // console.log(e);
+        catch (event){
+            // console.log(event);
         }
         return false;
     });

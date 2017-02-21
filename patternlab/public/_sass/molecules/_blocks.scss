@@ -401,3 +401,11 @@ a.fill {
         }
     }
 }
+
+#make-loan {
+    &.fix {
+        position:fixed;
+        width: 100%;
+        overflow: hidden;
+    }
+}

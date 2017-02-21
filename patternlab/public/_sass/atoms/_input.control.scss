@@ -3,10 +3,8 @@
     INPUT.CONTROL
     Friendlier HTML form controls with a little CSS magic.
 \*----------------------------------------------------------------------------*/
-
 /*  Variables
 \*----------------------------------------------------------------------------*/
-
 $control-width: 2.5em !default;
 $control-space: $control-width*1.5 !default;
 $control-line-height: $control-space !default;
@@ -30,29 +28,35 @@ form {
     p {
         margin-bottom: 12px;
         position: relative;
+
         span {
             position: absolute;
             top: 9px;
             right: -10px;
         }
+
         label.radio-inline span {
             display: none;
         }
     }
+
     ul {
         list-style-type: none;
         margin-left: -40px;
+
         li {
             float: left;
             margin-right: 16px;
         }
     }
+
     .color--white & {
         input,
         textarea {
             color: $brand-dark-blue;
         }
     }
+
     textarea {
         text-align: left;
         height: 80px;
@@ -60,38 +64,39 @@ form {
         max-width: 100%;
         width: 100%;
     }
-    input[type="text"],
+
     input[type="email"],
     input[type="number"],
-    input[type="password"] {
+    input[type="password"],
+    input[type="text"] {
         width: 100%;
     }
+
     input[type="submit"] {
         display: block;
         margin-left: auto;
         margin-right: auto;
     }
 }
-
-
-
 /*  Component
 \*----------------------------------------------------------------------------*/
-
 form {
     width: 100%;
     max-width: 540px;
     margin: 0 auto;
-    input {
+
+    input:not(.lend) {
         display: block;
         width: 100%;
     }
+
     p {
         .news-form & {
             text-align: center;
             line-height: 1em;
         }
     }
+
     .news-form & {
         .radio input[type="radio"],
         .radio-inline input[type="radio"] {
@@ -113,22 +118,26 @@ input {
         border: none;
         background-color: $control-background-color;
         margin-bottom: 16px;
+
         &:placeholder {
             color: $medium-blue;
             opacity: 1;
             text-align: center;
         }
+
         &::-webkit-input-placeholder {
             color: $medium-blue;
         }
+
         &[type="submit"] {
             background-color: $subtle-blue;
             line-height: 1em;
             color: white;
             border-color: $subtle-blue;
             padding: 24px;
-            &:hover,
-            &:active {
+
+            &:active,
+            &:hover {
                 background-color: white;
                 color: $brand-dark-blue;
                 border: solid 1px $brand-dark-blue;
@@ -143,7 +152,6 @@ input {
     }
     padding-bottom: 54px !important;
 }
-
 /**
  * Actual input, needs to be hidden but not removed from rendering
  */
@@ -152,13 +160,9 @@ input {
     opacity: 0;
     z-index: -1;
 }
-
-
-
 /*  Indicator
     Visual representation of the input
 \*----------------------------------------------------------------------------*/
-
 .control__indicator {
     position: absolute;
     top: $control-line-height/2;
@@ -174,137 +178,112 @@ input {
     background-color: $control-background-color;
     user-select: none;
 }
-
-
-
 /*  States
 \*----------------------------------------------------------------------------*/
-
 /**
  * Checked/active
  */
-.control.is-checked .control__indicator,
-.control__input:checked ~ .control__indicator,
-.control__input:active ~ .control__indicator {
-    color: $control-background-color;
-    border-color: $control-focus-color;
-}
-
-
 /**
  * Focus
  */
-.control__input:focus,
-.control.is-checked .control__input:focus,
-.control__input:checked:focus,
-.control__input:active:focus {
-    ~ .control__indicator {
-        border-color: $control-focus-color;
-    }
-}
-
-
 /**
  * Disabled
  */
-.control.is-disabled {
-    cursor: not-allowed;
-}
-
-.control.is-disabled .control__indicator,
-.control__input:disabled ~ .control__indicator,
-.control.is-checked.is-disabled .control__indicator,
-.control .control__input:checked:disabled ~ .control__indicator {
-    border-color: $control-disabled-color;
-    background-color: $control-disabled-color;
-    cursor: not-allowed;
-}
-
-.control.is-disabled .control__label,
-.control__input:disabled ~ .control__label {
-    color: $control-disabled-color;
-    cursor: not-allowed;
-}
-
-
-
 /*  Modifiers
 \*----------------------------------------------------------------------------*/
-
 /**
- * Checkbox
- */
-.control--checkbox {
-    .control__indicator {
+ * Radio & Checkbox
+*/
 
-        &::after {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-            width: 0;
-            height: 0;
-            content: " ";
-            background-color: transparent;
+label.btn {
+    border: none;
+    padding: 0;
+    text-align: left;
+    outline: none !important;
+    color: currentColor;
+    h2 { // snoflake for lend money form
+        display: inline;
+        line-height: 0;
+        margin-left: 21.33333%;
+
+        @media (max-width: 768px) {
+            margin-left: 8.33333%;
         }
     }
 
-    &.is-checked .control__indicator,
-    .control__input:checked ~ .control__indicator {
-        border-color: $control-focus-color;
+    .form-horizontal & {
+        clear: both;
+    }
 
+    &.active,
+    &:active {
+        box-shadow: none;
+    }
+    &:hover,
+    &:focus,
+    &.focus {
+        background-color: transparent !important;
+        color: currentColor !important;
+    }
+
+    &.check,
+    &.radio {
+        position: relative;
+        margin: 8px 0 16px 52px !important;
+        padding-left: 24px;
+        display: block;
+        height: 52px;
+        &::before, // the border provider
+        &::after { // the middle mark
+            content: "";
+            position: absolute;
+
+            @include transition(background-color 0.3s, opacity 0.3s);
+        }
+        &::before {
+            height: 52px;
+            width: 52px;
+            top: -16px;
+            left: -52px;
+            border: 1px solid currentColor;
+        }
         &::after {
-            background-color: $control-focus-color;
-            width: 80%;
-            height: 80%;
+            height: 34px;
+            width: 34px;
+            top: -7px;
+            left: -43px;
+        }
+    }
+
+    &.radio {
+        &::after,
+        &::before {
+            border-radius: 50%;
+        }
+        &.active::after {
+            background-color: currentColor;
+        }
+    }
+    &.check {
+        &::after {
+            opacity: 0;
+        }
+        &.active::after {
+            background-image: url('data:image/svg+xml;utf8,<svg version="1.1" id="check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33.79 27.27"><path d="M14.64,27.74l0.12,0.12L34.18,8.43,26.33,0.58,14.64,12.27l-6.4-6.4L0.39,13.72,14.52,27.86Z" fill="#ffffff" transform="translate(-0.39 -0.58)"/></svg>');
+            background-repeat: no-repeat;
+            background-position: 0 5px;
+            opacity: 1;
         }
     }
 }
-
-
-
-/**
- * Radio
- */
 
 .radio-inline { // bootstrap label wrap input
     margin-bottom: 16px;
 }
 
-.radio input[type="radio"],
-.radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
-.checkbox-inline input[type="checkbox"] {
+.checkbox-inline input[type="checkbox"],
+.radio input[type="radio"],
+.radio-inline input[type="radio"] {
     margin-top: 9px;
 }
-
-//
-// .control--radio {
-//     .control__indicator {
-//         border-radius: 50%;
-//
-//         &::after {
-//             position: absolute;
-//             top: 50%;
-//             left: 50%;
-//             transform: translate(-50%, -50%);
-//             width: 0;
-//             height: 0;
-//             content: " ";
-//             border-radius: 50%;
-//             background-color: transparent;
-//         }
-//     }
-//
-//     &.is-checked .control__indicator,
-//     .control__input:checked ~ .control__indicator {
-//         border-color: $control-focus-color;
-//
-//         &::after {
-//             background-color: $control-focus-color;
-//             width: 80%;
-//             height: 80%;
-//         }
-//     }
-// }

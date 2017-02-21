@@ -1,14 +1,11 @@
 {{#inputCheckbox}}
-<label class="control  control--checkbox  js--control  {{inputCheckbox.modifier}}">
-    <input
-        class="control__input  js--control__input"
-        id="{{inputCheckbox.id}}"
-        name="{{inputCheckbox.name}}"
-        type="checkbox"
-        {{#inputCheckbox.isChecked}}checked{{/inputCheckbox.isChecked}}
-        {{#inputCheckbox.isDisabled}}disabled{{/inputCheckbox.isDisabled}}
-    >
-    <span class="control__indicator"></span>
-    <span class="control__label">{{{inputCheckbox.label}}}</span>
-</label>
+<div class="checkbox" data-toggle="buttons">
+    <label class="btn check" for="1">
+      <input type="checkbox" id="1"> Check me out
+    </label>
+    <br>
+    <label class="btn check active" for="2">
+      <input type="checkbox" id="2" checked> Check me checked
+    </label>
+</div>
 {{/inputCheckbox}}

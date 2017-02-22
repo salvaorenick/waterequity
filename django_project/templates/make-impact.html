@@ -6,7 +6,7 @@ Make an Impact
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid hero img-bg" style="background-image: url(/static/images/impactGirls.jpg)">
+<div class="container-fluid hero img-bg" style="background-image: url(/filer/canonical/1484186681/69/)">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-12 center-block text-center">
@@ -38,14 +38,302 @@ Make an Impact
     <div class="container">
         <div class="row">
             <div class="col-md-8 center-block text-center color--white">
-                <h2>Donate to Water.org</h2>
-                <p>Water has the power to break the cycle of poverty. To protect and save lives. To make a bright future possible for all. </p>
-                <p>Make a donation to support Water.org today.</p>
-                <p><a title="Make an Impact" href="https://contribute.water.org/" class="btn ">Give water today</a></p>
+                <form id="loanForm" class="form-horizontal">
+                    <div class="form-group col-xs-6">
+                        <label class="control-label checkbox inline ">
+                            <input type="checkbox" class="terms" data-stripe="terms-agree" /> I agree to the terms
+                        </label>
+                    </div>
+                    <div class="form-group col-xs-10">
+                        <label class="radio-inline lg-radio" for="25">
+                            <input type="radio" name="amount" id="25" value="25" required /> $25
+                        </label>
+                    </div>
+                    <div class="form-group col-xs-10">
+                        <label class="radio-inline lg-radio" for="50">
+                            <input type="radio" name="amount" id="50" value="50" /> $50
+                        </label>
+                    </div>
+                    <div class="form-group col-xs-10">
+                        <label class="radio-inline lg-radio" for="100">
+                            <input type="radio" name="amount" id="100" value="100" /> $100
+                        </label>
+                    </div>
+                    <div class="form-group col-xs-10">
+                        <label class="radio-inline lg-radio" for="1000">
+                            <input type="radio" name="amount" id="1000" value="1000" /> $1000
+                        </label>
+                    </div>
+                    <div class="form-group col-xs-10">
+                        <label class="radio-inline lg-radio" for="100">
+                            <input type="radio" name="amount" value="" /> $<input type="text" id="otherAmt"/>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Full name</label>
+                        <div class="col-xs-6">
+                            <input type="text"
+                                class="form-control name"
+                                autocomplete="name"
+                                data-stripe="name"
+                                required
+                                minlength="2" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Email address</label>
+                        <div class="col-xs-6">
+                            <input type="email"
+                                class="form-control email"
+                                autocomplete="email"
+                                data-stripe="email-address" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Your telephone</label>
+                        <div class="col-xs-6">
+                            <input type="tel"
+                                class="form-control tel"
+                                autocomplete="tel"
+                                data-stripe="tel" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Your address</label>
+                        <div class="col-xs-6">
+                            <input type="text"
+                                class="form-control streetAddress"
+                                autocomplete="street-address"
+                                placeholder="1 Royal Way"
+                                data-stripe="address_line1" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">City</label>
+                        <div class="col-xs-6">
+                            <input type="text"
+                                class="form-control address_city"
+                                placeholder="Kansas City"
+                                data-stripe="address_city" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">State and Zip</label>
+                        <div class="col-xs-3">
+                            <input type="text"
+                                class="form-control"
+                                placeholder="MO"
+                                data-stripe="address_state" />
+                        </div>
+                        <div class="col-xs-3">
+                            <input type="text"
+                                class="form-control"
+                                autocomplete="postal-code"
+                                placeholder="64105"
+                                data-stripe="address_zip" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Credit card number</label>
+                        <div class="col-xs-6">
+                            <input type="tel"
+                                class="form-control cc_number"
+                                data-stripe="number"
+                                autocomplete="cc-number" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Expiration and CVC</label>
+                        <div class="col-xs-2">
+                            <input class="form-control cc_exp_month"
+                                autocomplete="cc-exp-month"
+                                placeholder="01"
+                                data-stripe="exp-month"
+                                autocomplete="cc-exp" />
+                        </div>
+                        <div class="col-xs-2">
+                            <input class="cc-exp form-control cc_exp_year"
+                                autocomplete="cc-exp-year"
+                                placeholder="2020"
+                                data-stripe="exp-year"
+                                autocomplete="cc-exp-year" />
+                        </div>
+                        <div class="col-xs-2">
+                            <input type="text"
+                                class="form-control cvc"
+                                data-stripe="cvc"
+                                autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-9 col-xs-offset-3">
+                            <input type="submit" class="btn btn-primary" value="Lend to WaterEquity" />
+                        </div>
+                    </div>
+
+                    <!-- <input type="hidden" name="token" value="" /> -->
+                </form>
+                <script src="https://js.stripe.com/v2/"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.min.js"></script>
+                <script>
+                $(document).ready(function() {
+
+                    var loanForm = $('#loanForm'),
+                        today = new Date(),
+                        thisYear = today.getFullYear();
+
+                    Stripe.setPublishableKey('pk_test_zD30U7Uo8bWMbZXot8UyBkoK');
+
+                    $.validator.addMethod('cardNumber', function(value, element, param){
+                        return $.payment.validateCardNumber(value);
+                    }, 'Invalid Card Number');
+                    //
+                    // $.validator.addMethod('cardExpiry', function(value, element, param){
+                    //     return $.payment.validateCardExpiry(param);
+                    // }, 'Invalid Expiration Date');
+                    //
+                    // $.validator.addMethod('cardCVC', function(value, element, param){
+                    //     return $.payment.validateCardCVC(value, param);
+                    // }, 'Invalid CVC Number');
+
+                    // loanForm.find('input[type=submit]').prop('disabled', true);
+                    // $( '.terms' ).rules( 'add', {
+                    //    required: true
+                    // });
+                    // $.validator.addClassRules({
+                    //     terms: {
+                    //         required: true
+                    //     },
+                    //     amount: {
+                    //         required: true,
+                    //         min: 1
+                    //     },
+                    //     name: {
+                    //         required: true,
+                    //         rangelength: [2, 50]
+                    //     },
+                    //     email: {
+                    //         required: true,
+                    //         email: true
+                    //     },
+                    //     tel: {
+                    //         rangelength: [10, 20]
+                    //     },
+                    //     street_address: {
+                    //         // TODO
+                    //     },
+                    //     address_city: {
+                    //         // TODO
+                    //     },
+                    //     address_state: {},
+                    //     address_zip: {},
+                    //     cc_number: {
+                    //         required: true,
+                    //         // creditcard: true,
+                    //         cardNumber: true
+                    //     },
+                    //     cc_exp_month: {
+                    //         required: true,
+                    //         rangelength: [1, 2],
+                    //         digits: true
+                    //     },
+                    //     cc_exp_year: {
+                    //         required: true,
+                    //         rangelength: [4, 4],
+                    //         range: [thisYear, thisYear + 20],
+                    //         digits: true
+                    //     },
+                    //     cvc: {
+                    //         required: true,
+                    //         minlength: 3,
+                    //         maxlength: 4
+                    //     }
+                    // });
+
+                    loanForm.validate({
+                        submitHandler: function (form) {
+                            console.log("Submitted!");
+                            return false;
+                        }
+                        // ,
+                        // submitHandler: function(form) {
+                        //     // form.validate(this);
+                        //     debugger;
+                        //     form.submit(function(e) {
+                        //         e.preventDefault();
+                        //         var $form = $(e.target);
+                        //         $form.find('input[type=submit]').prop('disabled', true);
+                        //         // $form.find('[name="token"]').val('');
+                        //         Stripe.card.createToken($form, function(status, response) {
+                        //             if (response.error) {
+                        //                 alert(response.error.message);
+                        //             } else {
+                        //
+                        //                 console.log(response);
+                        //                 console.log(status);
+                        //                 // Set the token value
+                        //                 // $form.find('[name="token"]').val(response.id);
+                        //                 //
+                        //                 // // You can submit the form to back-end as usual
+                        //                 // $form.get(0).success(function(data) {
+                        //                 //     // Handle the response
+                        //                 //     console.log(data.message);
+                        //                 //
+                        //                 //     // Reset the form
+                        //                 //     // $form.formValidation('resetForm', true);
+                        //                 //
+                        //                 // });
+                        //             }
+                        //         });
+                        //         return false;
+                        //     });
+                        //     return false;
+                        // }
+                    });
+
+
+                    // loanForm.submit(function(e) {
+                    //     e.preventDefault();
+                    //     var $form = $(e.target);
+                    //     // $form.find('input[type=submit]').prop('disabled', true);
+                    //
+                    //     // Reset the token first
+                    //     $form.find('[name="token"]').val('');
+                    //
+                    //     Stripe.card.createToken($form, function(status, response) {
+                    //         if (response.error) {
+                    //             alert(response.error.message);
+                    //         } else {
+                    //             debugger;
+                    //             console.log(response);
+                    //             console.log(status);
+                    //             // Set the token value
+                    //             // $form.find('[name="token"]').val(response.id);
+                    //             //
+                    //             // // You can submit the form to back-end as usual
+                    //             // $form.get(0).success(function(data) {
+                    //             //     // Handle the response
+                    //             //     console.log(data.message);
+                    //             //
+                    //             //     // Reset the form
+                    //             //     // $form.formValidation('resetForm', true);
+                    //             //
+                    //             // });
+                    //
+                    //         }
+                    //     });
+                    //     return false;
+                    // });
+                });
+                </script>
             </div>
         </div>
     </div>
 </div>
-<div class="container-fluid background--medium-blue container_padding--medium img-bg img-big-space" style="background-image: url(/static/images/happyKids.jpg); padding-top: 80px;">
+<div class="container-fluid background--medium-blue container_padding--medium img-bg img-big-space" style="background-image: url(/filer/canonical/1484026841/31/); padding-top: 80px;">
 </div>
 {% endblock %}

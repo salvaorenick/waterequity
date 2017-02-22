@@ -1,7 +1,19 @@
-'use strict';
+/* Contents:
+    - eslint helpers
+    - unfix and fix header on scroll
+    - add active class to nav button matching page
+    - cup drop on challenge page
+    - add asterisk to required fields
+    - make loan form helper
+    - Vimeo overlay, autoplay and close with video stop
+    - on staff hover, others go black and white with css class
 
-/*jshint unused:false */
-/*global Vimeo, e, ga */
+*/
+
+/*eslint no-unused-vars: ["error", { "vars": "local" }]*/
+/*global Vimeo, event, ga, loanFormSuccess */
+
+'use strict';
 
 // unfix and fix header on scroll
 
@@ -26,7 +38,8 @@ $(function () {
         }
     };
 
-    $(window).scroll(function (e) {
+    $(window).scroll(function (event) {
+        // eslint-disable-line
         scrollTimeOut = true;
     });
 
@@ -97,6 +110,71 @@ $(function () {
     }
 });
 
+// make loan form helper. toggle active class for radio and set its value with associated text input for the
+$('.input-value').focus(function () {
+    $(this).closest('.form-group').children('label').removeClass('active');
+    $('#radio-value').parent('label').addClass('active');
+});
+
+$('.input-value').change(function () {
+    $('#radio-value').val($(this).val());
+});
+
+// make loan razzle dazzle. form sticks to the bottom of the page and pops up when a button is clicked
+if ($('#make-loan').length) {
+    var loanFormSuccess = function loanFormSuccess() {
+        // eslint-disable-line
+        $('form').fadeOut();
+        $('#make-loan h2').first().fadeOut();
+        $('#make-loan img').first().fadeOut();
+        $('.thanks').css({
+            'display': 'block',
+            'opacity': 1
+        });
+        $('#make-loan').css({
+            'min-height': $(window).height(),
+            'background-image': 'url("http://waterequity.s3.amazonaws.com/media/filer_public/a3/b2/a3b29d3b-6059-4403-8ca1-9ba84f694cb7/ranjaana-and-her-new-waterpoint.jpg")',
+            'background-position-y': 0
+        });
+        $('html, body').animate({ scrollTop: $('#make-loan').offset().top }, 350);
+    };
+
+    var loanForm = $('#make-loan'),
+        loanFormHeightDisplayed = 190,
+        openFormBtn = $('.open-form'),
+        body = $('body'),
+        footer = $('footer.footer'),
+        displayHeight = $(window).height(),
+        setLoanFormAtBottom = function setLoanFormAtBottom() {
+        loanForm.addClass('fix').css({
+            'top': displayHeight - loanFormHeightDisplayed,
+            'height': loanFormHeightDisplayed
+        });
+        if ($(window).width() > 1024) {
+            footer.css({ 'bottom': loanFormHeightDisplayed });
+            body.css({ 'padding-bottom': 438 + loanFormHeightDisplayed });
+        } else {
+            footer.css({ 'margin-bottom': loanFormHeightDisplayed });
+        }
+    };
+
+    openFormBtn.click(function () {
+
+        loanForm.removeClass('fix').css({
+            'height': 'auto',
+            'background-image': 'none'
+        });
+        body.removeAttr('style');
+        footer.removeAttr('style');
+        openFormBtn.fadeOut();
+
+        $('html, body').animate({ scrollTop: loanForm.offset().top }, 350);
+    });
+
+    $('form').click(loanFormSuccess);
+    setLoanFormAtBottom();
+}
+
 // Vimeo overlay, autoplay and close with video stop
 $(function () {
     var player, overlay, container;
@@ -130,8 +208,8 @@ $(function () {
                 eventAction: 'play',
                 eventLabel: player.element.src
             });
-        } catch (e) {
-            // console.log(e);
+        } catch (event) {
+            // console.log(event);
         }
         return false;
     });

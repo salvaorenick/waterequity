@@ -403,9 +403,27 @@ a.fill {
 }
 
 #make-loan {
+    @include transition(top, 0.5s, height, 0.5s, padding, 0.5s);
     &.fix {
-        position:fixed;
+        position: fixed;
+        z-index: 4;
         width: 100%;
         overflow: hidden;
+        padding: 0;
+        img {
+            margin-top: 22px;
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            transform: rotate(180deg);
+
+            @include transition(margin, 0.2s);
+        }
+    }
+    .thanks {
+        display: none;
+        opacity: 0;
+        padding: 34px 54px;
+        margin-top: 80px;
     }
 }

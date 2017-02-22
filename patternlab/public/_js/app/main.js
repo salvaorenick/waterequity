@@ -11,7 +11,7 @@
 */
 
 /*eslint no-unused-vars: ["error", { "vars": "local" }]*/
-/*global Vimeo, event, ga */
+/*global Vimeo, event, ga, loanFormSuccess */
 
 'use strict';
 
@@ -123,23 +123,59 @@ $('.input-value').change(function() {
 
 // make loan razzle dazzle. form sticks to the bottom of the page and pops up when a button is clicked
 if ($('#make-loan').length) {
+
     var loanForm = $('#make-loan'),
-        loanFormPreviousDiv = loanForm.prev(),
+        loanFormHeightDisplayed = 190,
+        openFormBtn = $('.open-form'),
+        body = $('body'),
+        footer = $('footer.footer'),
+        displayHeight =  $(window).height(),
         setLoanFormAtBottom = function() {
             loanForm.addClass('fix').css({
-                'top': $(window).height() - 190,
-                'height': 190
+                'top': displayHeight - loanFormHeightDisplayed,
+                'height': loanFormHeightDisplayed
             });
-        },
-        animateLoanFormUp = function() {
-
-        },
-        displayLoanForm = function() {
-
+            if ($(window).width() > 1024) {
+                footer.css({'bottom': loanFormHeightDisplayed});
+                body.css({'padding-bottom': 438 + loanFormHeightDisplayed});
+            } else {
+                footer.css({'margin-bottom': loanFormHeightDisplayed});
+            }
         };
 
+    openFormBtn.click(function(){
+
+        loanForm.removeClass('fix').css({
+            'height': 'auto',
+            'background-image': 'none'
+        });
+        body.removeAttr('style');
+        footer.removeAttr('style');
+        openFormBtn.fadeOut();
+
+        $('html, body').animate({scrollTop:loanForm.offset().top}, 350);
+    });
+
+    function loanFormSuccess() { // eslint-disable-line
+        $('form').fadeOut();
+        $('#make-loan h2').first().fadeOut();
+        $('#make-loan img').first().fadeOut();
+        $('.thanks').css({
+            'display': 'block',
+            'opacity': 1
+        });
+        $('#make-loan').css({
+            'min-height': $(window).height(),
+            'background-image': 'url("http://waterequity.s3.amazonaws.com/media/filer_public/a3/b2/a3b29d3b-6059-4403-8ca1-9ba84f694cb7/ranjaana-and-her-new-waterpoint.jpg")',
+            'background-position-y': 0
+        });
+        $('html, body').animate({scrollTop: $('#make-loan').offset().top}, 350);
+    }
+    $('form').click(loanFormSuccess);
     setLoanFormAtBottom();
+
 }
+
 
 // Vimeo overlay, autoplay and close with video stop
 $(function() {

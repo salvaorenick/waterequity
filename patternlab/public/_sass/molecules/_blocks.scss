@@ -403,7 +403,7 @@ a.fill {
 }
 
 #make-loan {
-    @include transition(top, 0.5s, height, 0.5s, padding, 0.5s, bottom: 0.5s);
+    @include transition(top, 0.5s, height, 0.5s, padding, 0.5s, bottom, 0.5s);
     &.fix {
         position: fixed;
         z-index: 4;

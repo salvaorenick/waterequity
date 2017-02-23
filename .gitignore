@@ -17,6 +17,7 @@ settings_local.py
 .local/
 certbot-auto/
 certbot*
+.selected_editor
 
 #Pl specific
 patternlab/public/index.html

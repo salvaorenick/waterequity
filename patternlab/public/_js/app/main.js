@@ -162,7 +162,7 @@ if ($('#make-loan').length) {
             'opacity': 1
         });
         $('#make-loan').css({
-            'min-height': displayHeight,
+            'min-height': window.screen.height,
             'background-image': 'url("http://waterequity.s3.amazonaws.com/media/filer_public/a3/b2/a3b29d3b-6059-4403-8ca1-9ba84f694cb7/ranjaana-and-her-new-waterpoint.jpg")',
             'background-position-y': 0
         });

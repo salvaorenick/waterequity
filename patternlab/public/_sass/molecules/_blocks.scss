@@ -403,13 +403,15 @@ a.fill {
 }
 
 #make-loan {
-    @include transition(top, 0.5s, height, 0.5s, padding, 0.5s);
+    @include transition(top, 0.5s, height, 0.5s, padding, 0.5s, bottom: 0.5s);
     &.fix {
         position: fixed;
         z-index: 4;
         width: 100%;
         overflow: hidden;
         padding: 0;
+        bottom: 0;
+        height: 190px;
         img {
             margin-top: 22px;
             -webkit-transform: rotate(180deg);

@@ -64,7 +64,6 @@ Make an Impact
             <img src="https://s3.amazonaws.com/waterequity/images/caret_lg.254a1e8fa198.svg" alt="make loan indicator"/>
             <h2>Make a loan today</h2>
             <button class="btn open-form" style="margin-top: -20px">Learn More</button>
-            <div class="payment-errors"></div>
             <form id="loanForm" class="form-horizontal text-left center-block" style="margin-top: 80px">
                 {% csrf_token %}
                 <div class="form-group row" data-toggle="buttons">
@@ -184,6 +183,7 @@ Make an Impact
                       <span class="col-xs-10">I accept the terms of agreement</span>
                     </label>
                 </div>
+                <div class="payment-errors alert alert-warning collapse"></div>
                 <div class="form-group text-center ">
                     <input type="submit" class="btn lend" value="Charge my Card" />
                 </div>
@@ -224,10 +224,10 @@ Make an Impact
                         console.log(response);
                         console.log(status);
                         if (response.error) {
-                            alert(response.error.message);
-                            $form.find('.payment-errors').text(response.error.message);
+                            $form.find('.payment-errors').text(response.error.message).show();
                         } else {
                            // Set the token value
+			    $form.find('input[name="stripeToken"]').remove();
                             $form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
                             // You can submit the form to back-end as usual
                             $.ajax({
@@ -235,12 +235,12 @@ Make an Impact
                                  url: '/process-loan/',
                                  data: $form.serialize(),
                                  success: function(response) {
-                                     console.log(response);
+                                   //  console.log(response);
                                      loanFormSuccess();
                                  },
                                  error: function(response) {
                                     console.log(response);
-                                    alert('There was an error submitting the loan');
+				    $form.find('.payment-errors').text(response.message).show();
                                 }
                              });
                         }

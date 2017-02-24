@@ -43,6 +43,8 @@ INSTALLED_APPS = (
     'email_extras',
     'storages',
     'django_project',
+    'stripe',
+    'apps.loans',
 )
 
 MIDDLEWARE_CLASSES = (

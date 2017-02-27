@@ -196,59 +196,6 @@ Make an Impact
             <script src="https://js.stripe.com/v2/"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.min.js"></script>
-            <script>
-            $(document).ready(function() {
-
-                var loanForm = $('#loanForm'),
-                    today = new Date(),
-                    thisYear = today.getFullYear();
-
-                Stripe.setPublishableKey('pk_test_zD30U7Uo8bWMbZXot8UyBkoK');
-
-                $.validator.addMethod('.cc_number', function(value, element, param){
-                    return $.payment.validateCardNumber(value);
-                }, 'Invalid Card Number');
-
-                loanForm.validate({
-                    submitHandler: function (form) {
-                        console.log("Submitted!");
-                        return false;
-                    }
-                });
-
-                loanForm.submit(function(e) {
-                    e.preventDefault();
-                    var $form = $(e.target);
-
-                    Stripe.card.createToken($form, function(status, response) {
-                        console.log(response);
-                        console.log(status);
-                        if (response.error) {
-                            $form.find('.payment-errors').text(response.error.message).show();
-                        } else {
-                           // Set the token value
-			    $form.find('input[name="stripeToken"]').remove();
-                            $form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
-                            // You can submit the form to back-end as usual
-                            $.ajax({
-                                 type: 'POST',
-                                 url: '/process-loan/',
-                                 data: $form.serialize(),
-                                 success: function(response) {
-                                   //  console.log(response);
-                                     loanFormSuccess();
-                                 },
-                                 error: function(response) {
-                                    console.log(response);
-				    $form.find('.payment-errors').text(response.message).show();
-                                }
-                             });
-                        }
-                    });
-                    return false;
-                });
-            });
-            </script>
         </div>
     </div>
 </div>

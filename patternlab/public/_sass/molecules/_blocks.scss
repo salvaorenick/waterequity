@@ -424,6 +424,13 @@ a.fill {
         .thanks {
             margin-top: 100%;
         }
+        &:hover {
+            cursor: pointer;
+            .btn {
+                color: $light-blue;
+                background-color: white;
+            }
+        }
     }
     input.form-control {
         height: 44px;

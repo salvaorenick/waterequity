@@ -11,7 +11,7 @@
 */
 
 /*eslint no-unused-vars: ["error", { "vars": "local" }]*/
-/*global Vimeo, event, ga, loanFormSuccess */
+/*global Vimeo, event, ga, loanFormSuccess, Stripe, param, form, response */
 
 'use strict';
 
@@ -171,7 +171,8 @@ if ($('#make-loan').length) {
             footer.css({ 'margin-bottom': loanFormHeightDisplayed });
         }
     },
-        loanFormOpened = false;
+        loanFormOpened = false,
+        form = $('#loanForm');
 
     setLoanFormAtBottom();
 
@@ -192,13 +193,44 @@ if ($('#make-loan').length) {
         }
     });
 
-    // var fired = false;
-    // window.addEventListener("scroll", function(){
-    //     if (document.body.scrollTop >= 1000 && fired === false) {
-    //         alert('This will happen only once');
-    //         fired = true;
-    //     }
-    // }, true)
+    // form handling
+    Stripe.setPublishableKey('pk_test_zD30U7Uo8bWMbZXot8UyBkoK');
+
+    form.validate({
+        submitHandler: function submitHandler(form) {
+            return false;
+        },
+        errorPlacement: function errorPlacement(error, element) {
+            error.insertAfter(element);
+        }
+    });
+
+    form.submit(function (e) {
+        e.preventDefault();
+        var $form = $(e.target);
+
+        Stripe.card.createToken($form, function (status, response) {
+            if (response.error) {
+                $form.find('.payment-errors').text(response.error.message).show();
+            } else {
+                $form.find('input[name="stripeToken"]').remove();
+                $form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
+                // You can submit the form to back-end as usual
+                $.ajax({
+                    type: 'POST',
+                    url: '/process-loan/',
+                    data: $form.serialize(),
+                    success: function success(response) {
+                        loanFormSuccess();
+                    },
+                    error: function error(response) {
+                        $form.find('.payment-errors').text(response.message).show();
+                    }
+                });
+            }
+        });
+        return false;
+    });
 }
 
 // Vimeo overlay, autoplay and close with video stop

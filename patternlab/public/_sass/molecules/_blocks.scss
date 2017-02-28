@@ -446,4 +446,16 @@ a.fill {
             margin-top: 80px;
         }
     }
+
+    @media (max-width: 991px) {
+        .form-group .col-xs-4 {
+            margin-top: 15px;
+        }
+        span.col-md-6 {
+            clear: left;
+            float: left;
+            margin-bottom: 44px;
+            margin-top: -15px;
+        }
+    }
 }

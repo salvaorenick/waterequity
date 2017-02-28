@@ -146,10 +146,12 @@ function loanFormSuccess() { // eslint-disable-line
         'background-image': 'url("http://waterequity.s3.amazonaws.com/media/filer_public/a3/b2/a3b29d3b-6059-4403-8ca1-9ba84f694cb7/ranjaana-and-her-new-waterpoint.jpg")',
         'background-position-y': 0
     });
+    loanForm = null;
 }
 
 function animateLoanFormUp() {
     $('html, body').animate({scrollTop: $('#make-loan').offset().top}, 350);
+    $('nav.navbar').addClass('hide-nav');
 }
 
 // make loan razzle dazzle. form sticks to the bottom of the page and pops up when a button is clicked
@@ -201,7 +203,7 @@ if ($('#make-loan').length) {
             return false;
         },
         errorPlacement: function(error, element) {
-            error.insertAfter(element);
+            error.delay(1000).insertAfter(element);
         }
     });
 

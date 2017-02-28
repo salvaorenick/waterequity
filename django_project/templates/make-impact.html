@@ -6,7 +6,7 @@ Make an Impact
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid hero img-bg" style="background-image: url(https://waterequity.s3.amazonaws.com/media/filer_public/b5/75/b5756b86-8bfc-4054-8e5a-2ed6e769b1c5/14682615033_fb799e9b64_o.jpg)">
+<div class="container-fluid hero img-bg" style="background-image: url(https://waterequity.s3.amazonaws.com/media/filer_public/b5/75/b5756b86-8bfc-4054-8e5a-2ed6e769b1c5/14682615033_fb799e9b64_o.jpg); background-attachment: fixed">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-12 center-block text-center">
@@ -61,7 +61,7 @@ Make an Impact
 <div id="make-loan" class="container-fluid container_padding--medium background--light-blue text-center img-bg" style="background-color: #82c1ea; background-image: url(https://waterequity.s3.amazonaws.com/media/filer_public/23/1b/231b9d84-5199-4eeb-8136-4bd1f41d4128/happykids.jpg);">
     <div class="row">
         <div class="col-md-8 center-block text-center color--white">
-            <img src="https://s3.amazonaws.com/waterequity/images/caret_lg.254a1e8fa198.svg" alt="make loan indicator"/>
+            <img src="https://s3.amazonaws.com/waterequity/images/caret_lg.254a1e8fa198.svg" alt=""/>
             <h2>Make a loan today</h2>
             <button class="btn open-form" style="margin-top: -20px">Learn More</button>
             <form id="loanForm" class="form-horizontal text-left center-block" style="margin-top: 80px">
@@ -73,15 +73,15 @@ Make an Impact
                     <div class="col-xs-3">
                         <input type="text" class="form-control input-value" />
                     </div>
-                    <span class="col-xs-6">Loan what you can. It'll help.</span>
+                    <span class="col-md-6">Loan what you can. It'll help.</span>
                     <br>
                     <label class="radio-inline radio btn col-xs-4" for="220">
                         <input type="radio" name="amount" id="220" date-stripe="amount" value="220" /> <h2>$220</h2>
                     </label>
-                    <span class="col-xs-6">Our lender average per loan.</span>
+                    <span class="col-md-6">Our lender average per loan.</span>
                 </div>
                 <div class="form-group row">
-                    <div class="col-xs-8">
+                    <div class="col-md-8">
                         <label>Card Number:</label>
                         <input
                             class="form-control cc_number"
@@ -100,7 +100,7 @@ Make an Impact
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-xs-8">
+                    <div class="col-md-8">
                         <label>Name on Card:</label>
                         <input type="text"
                             class="form-control name"
@@ -170,17 +170,17 @@ Make an Impact
                     <p class="col-xs-12"><br>At the close of this loan agreement, I would like my loan principal:<br><br></p>
                     <label class="radio-inline radio btn active" for="relent">
                         <input type="radio" name="loan-option" id="relent" value="relend" required checked />
-                        <span class="col-xs-10 wrap">to be re-lent, so that my loan capital can recycle to support another loan.</span>
+                        <span class="col-xs-12 wrap">to be re-lent, so that my loan capital can recycle to support another loan.</span>
                     </label>
                     <label class="radio-inline radio btn" for="returned">
                         <input type="radio" name="loan-option" id="returned" value="return"/>
-                         <span class="col-xs-10">returned to me.</span>
+                         <span class="col-xs-12">returned to me.</span>
                     </label>
                 </div>
                 <div class="form-group checkbox row" data-toggle="buttons"style="margin-top: 34px">
                     <label class="btn check-inline check color--white center-block" for="agree">
                       <input type="checkbox" value="true" name="accept-terms" id="agree" required />
-                      <span class="col-xs-10">I accept the terms of agreement</span>
+                      <span class="col-xs-12">I accept the terms of agreement</span>
                     </label>
                 </div>
                 <div class="payment-errors alert alert-warning collapse"></div>

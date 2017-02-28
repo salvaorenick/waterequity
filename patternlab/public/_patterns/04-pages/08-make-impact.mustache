@@ -1,5 +1,5 @@
 {{> organisms-header }}
-<div class="container-fluid hero img-bg" style="background-image: url(../../images/impactGirls.jpg)">
+<div class="container-fluid hero img-bg" style="background-image: url(../../images/impactGirls.jpg);background-attachment: fixed">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-12 center-block text-center">
@@ -51,47 +51,49 @@
         </div>
     </div>
 </div>
-<div id="make-loan" class="container-fluid container_padding--medium background--light-blue text-center img-bg" style="background-color: #82c1ea; background-image: url(../../images/happyKids.jpg);">
+<div id="make-loan" class="container-fluid container_padding--medium background--light-blue text-center img-bg" style="background-color: #82c1ea; background-image: url(https://waterequity.s3.amazonaws.com/media/filer_public/23/1b/231b9d84-5199-4eeb-8136-4bd1f41d4128/happykids.jpg);">
     <div class="row">
         <div class="col-md-8 center-block text-center color--white">
-            <img src="../../images/caret_lg.svg" alt="make loan"/>
+            <img src="https://s3.amazonaws.com/waterequity/images/caret_lg.254a1e8fa198.svg" alt=""/>
             <h2>Make a loan today</h2>
             <button class="btn open-form" style="margin-top: -20px">Learn More</button>
             <form id="loanForm" class="form-horizontal text-left center-block" style="margin-top: 80px">
+                <!-- {% csrf_token %} -->
                 <div class="form-group row" data-toggle="buttons">
                     <label class="radio-inline radio btn col-xs-1" for="radio-value">
-                        <input type="radio" name="amount" id="radio-value" required />
+                        <input type="radio" name="amount" id="radio-value" date-stripe="amount" />
                     </label>
                     <div class="col-xs-3">
-                        <input type="text" class="form-control input-value" date-stripe="amount" />
+                        <input type="text" class="form-control input-value" />
                     </div>
-                    <span class="col-xs-6">Loan what you can. It'll help.</span>
+                    <span class="col-md-6">Loan what you can. It'll help.</span>
                     <br>
-                    <label class="radio-inline radio btn col-xs-4" for="50">
-                        <input type="radio" id="50" date-stripe="amount" value="220" /> <h2>$220</h2>
+                    <label class="radio-inline radio btn col-xs-4" for="220">
+                        <input type="radio" name="amount" id="220" date-stripe="amount" value="220" /> <h2>$220</h2>
                     </label>
-                    <span class="col-xs-6">Our lender average per loan.</span>
+                    <span class="col-md-6">Our lender average per loan.</span>
                 </div>
                 <div class="form-group row">
-                    <div class="col-xs-8">
+                    <div class="col-md-8">
                         <label>Card Number:</label>
-                        <input type="tel"
+                        <input
                             class="form-control cc_number"
                             data-stripe="number"
-                            autocomplete="cc-number" />
+                            autocomplete="cc-number"
+                            required creditcard />
                     </div>
                     <div class="col-xs-4">
                         <label>Expiration Date:</label>
                         <input class="form-control cc_exp_month"
-                            autocomplete="cc-exp-month"
                             placeholder="MM/YY"
-                            data-stripe="exp-month"
-                            autocomplete="cc-exp" />
+                            data-stripe="exp"
+                            autocomplete="cc-exp"
+                            required />
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-xs-8">
+                    <div class="col-md-8">
                         <label>Name on Card:</label>
                         <input type="text"
                             class="form-control name"
@@ -104,8 +106,9 @@
                         <label>Card Code:</label>
                         <input type="text"
                             class="form-control cvc"
-                            data-stripe="cvc"
-                            autocomplete="off" />
+                            placeholder="CVC"
+                            autocomplete="off"
+                            required />
                     </div>
                 </div>
                 <div class="form-group row">
@@ -133,6 +136,7 @@
                         <label>City</label>
                         <input type="text"
                             class="form-control address_city"
+                            autocomplete="address-city"
                             placeholder="Kansas City"
                             data-stripe="address_city" />
                     </div>
@@ -142,6 +146,7 @@
                         <label>State</label>
                         <input type="text"
                             class="form-control"
+                            autocomplete="address-state"
                             placeholder="MO"
                             data-stripe="address_state" />
                     </div>
@@ -150,72 +155,40 @@
                         <input type="text"
                             class="form-control"
                             autocomplete="postal-code"
-                            placeholder="64105"
+                            placeholder="64129"
                             data-stripe="address_zip" />
                     </div>
                 </div>
                 <div class="form-group row" data-toggle="buttons">
                     <p class="col-xs-12"><br>At the close of this loan agreement, I would like my loan principal:<br><br></p>
                     <label class="radio-inline radio btn active" for="relent">
-                        <input type="radio" data-stripe="relend" id="relent" value="relent" required checked />
-                        <span class="col-xs-10 wrap">to be re-lent, so that my loan capital can recycle to support another loan.</span>
+                        <input type="radio" name="loan-option" id="relent" value="relend" required checked />
+                        <span class="col-xs-12 wrap">to be re-lent, so that my loan capital can recycle to support another loan.</span>
                     </label>
                     <label class="radio-inline radio btn" for="returned">
-                        <input type="radio" date-stripe="returned" id="returned" value="returned"/>
-                         <span class="col-xs-10">returned to me.</span>
+                        <input type="radio" name="loan-option" id="returned" value="return"/>
+                         <span class="col-xs-12">returned to me.</span>
                     </label>
                 </div>
                 <div class="form-group checkbox row" data-toggle="buttons"style="margin-top: 34px">
                     <label class="btn check-inline check color--white center-block" for="agree">
-                      <input type="checkbox" data-stripe="accept-terms" id="agree" />
-                      <span class="col-xs-10">I accept the terms of agreement</span>
+                      <input type="checkbox" value="true" name="accept-terms" id="agree" required />
+                      <span class="col-xs-12">I accept the terms of agreement</span>
                     </label>
                 </div>
+                <div class="payment-errors alert alert-warning collapse"></div>
                 <div class="form-group text-center ">
                     <input type="submit" class="btn lend" value="Charge my Card" />
                 </div>
-
-                <!-- <input type="hidden" name="token" value="" /> -->
             </form>
             <div class="col-md-9 center-block padding-54 background--light-blue color--white thanks">
                 <h2>Thank you for your loan</h2>
                 <p>Please check your inbox.<br>A confirmation email has been sent.</p>
             </div>
 
-            <!-- <script src="https://js.stripe.com/v2/"></script>
+            <script src="https://js.stripe.com/v2/"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.min.js"></script>
-            <script>
-            $(document).ready(function() {
-
-                var loanForm = $('#loanForm'),
-                    today = new Date(),
-                    thisYear = today.getFullYear();
-
-                // Stripe.setPublishableKey('pk_test_zD30U7Uo8bWMbZXot8UyBkoK');
-
-                $.validator.addMethod('cardNumber', function(value, element, param){
-                    return $.payment.validateCardNumber(value);
-                }, 'Invalid Card Number');
-
-                $.validator.addMethod('cardExpiry', function(value, element, param){
-                    return $.payment.validateCardExpiry(param);
-                }, 'Invalid Expiration Date');
-
-                $.validator.addMethod('cardCVC', function(value, element, param){
-                    return $.payment.validateCardCVC(value, param);
-                }, 'Invalid CVC Number');
-
-                loanForm.find('input[type=submit]').prop('disabled', true);
-
-                loanForm.validate({
-                    submitHandler: function (form) {
-                        console.log("Submitted!");
-                        return false;
-                    }
-                });
-            });
-            </script> -->
         </div>
     </div>
 </div>

@@ -78,7 +78,8 @@ input[type="submit"] {
 
     @media (max-width: 768px) {
         padding: 20px;
-        width: 100% !important;
+        width: calc(100% - 30px) !important;
+        margin: 15px;
         max-width: 524px;
     }
 }

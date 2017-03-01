@@ -10,8 +10,7 @@
 
 */
 
-/*eslint no-unused-vars: ["error", { "vars": "local" }]*/
-/*global Vimeo, event, ga, loanFormSuccess, Stripe, param, form, response */
+/*global Vimeo, event, ga */
 
 'use strict';
 
@@ -128,8 +127,6 @@ function openLoanForm() {
     body.removeAttr('style');
     footer.removeAttr('style');
     openFormBtn.fadeOut();
-
-    $('html, body').animate({ scrollTop: loanForm.offset().top }, 350);
 }
 
 function loanFormSuccess() {
@@ -173,8 +170,7 @@ if ($('#make-loan').length) {
             footer.css({ 'margin-bottom': loanFormHeightDisplayed });
         }
     },
-        loanFormOpened = false,
-        form = $('#loanForm');
+        loanFormOpened = false;
 
     setLoanFormAtBottom();
 
@@ -193,45 +189,6 @@ if ($('#make-loan').length) {
             openLoanForm();
             loanFormOpened = true;
         }
-    });
-
-    // form handling
-    Stripe.setPublishableKey('pk_test_zD30U7Uo8bWMbZXot8UyBkoK');
-
-    form.validate({
-        submitHandler: function submitHandler(form) {
-            return false;
-        },
-        errorPlacement: function errorPlacement(error, element) {
-            error.delay(1000).insertAfter(element);
-        }
-    });
-
-    form.submit(function (e) {
-        e.preventDefault();
-        var $form = $(e.target);
-
-        Stripe.card.createToken($form, function (status, response) {
-            if (response.error) {
-                $form.find('.payment-errors').text(response.error.message).show();
-            } else {
-                $form.find('input[name="stripeToken"]').remove();
-                $form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
-                // You can submit the form to back-end as usual
-                $.ajax({
-                    type: 'POST',
-                    url: '/process-loan/',
-                    data: $form.serialize(),
-                    success: function success(response) {
-                        loanFormSuccess();
-                    },
-                    error: function error(response) {
-                        $form.find('.payment-errors').text(response.message).show();
-                    }
-                });
-            }
-        });
-        return false;
     });
 }
 

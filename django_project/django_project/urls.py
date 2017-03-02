@@ -20,8 +20,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^forms/', include(forms_builder.forms.urls)),
     url(r'^filer/', include('filer.urls')),
-    url(r'^process-loan/', include('apps.loans.urls')),
-    url(r'^make-loan/', TemplateView.as_view(template_name='make-impact.html')),
-
+    url(r'^make-loan/', include('apps.loans.urls')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

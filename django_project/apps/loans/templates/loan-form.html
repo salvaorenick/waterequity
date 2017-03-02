@@ -106,8 +106,8 @@ Make an Impact
                             class="form-control name"
                             autocomplete="name"
                             data-stripe="name"
-                            required
-                            minlength="2" />
+                            name="name"
+                            required />
                     </div>
                     <div class="col-xs-4">
                         <label>Card Code:</label>
@@ -125,6 +125,7 @@ Make an Impact
                                 class="form-control email"
                                 autocomplete="email"
                                 data-stripe="email-address"
+                                name="email-address"
                                 required />
                     </div>
                 </div>
@@ -222,15 +223,16 @@ Make an Impact
                                 $form.find('input[name="stripeToken"]').remove();
                                 $form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
                                 // You can submit the form to back-end as usual
+
                                 $.ajax({
                                     type: 'POST',
-                                    url: '/process-loan/',
+                                    url: '/make-loan/create-loan/',
                                     data: $form.serialize(),
                                     success: function(response) {
                                         loanFormSuccess();
                                     },
                                     error: function(response) {
-                                        $form.find('.payment-errors').text(response.message).show();
+                                        $form.find('.payment-errors').text(response.responseJSON.message).show();
                                     }
                                 });
                             }

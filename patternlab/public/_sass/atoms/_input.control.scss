@@ -96,6 +96,12 @@ form {
         .radio input[type="radio"],
         .radio-inline input[type="radio"] {
             margin-top: 4px;
+            width: 16px;
+            background: transparent;
+        }
+        input[type="email"],
+        input[type="text"] {
+            height: 69px;
         }
     }
 }

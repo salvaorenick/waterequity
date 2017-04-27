@@ -127,6 +127,7 @@ function animateLoanFormUp() {
 
 function loanFormSuccess() { // eslint-disable-line
     $('form').fadeOut();
+    $('#make-loan h2').first().fadeOut();
     $('.thanks').css({
         'display': 'block',
         'opacity': 1

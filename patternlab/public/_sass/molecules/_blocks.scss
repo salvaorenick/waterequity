@@ -423,6 +423,8 @@ a.fill {
         }
         .thanks {
             margin-top: 100%;
+
+            @include transition(margin, 0.2s, opacity, 0.5s);
         }
         &:hover {
             cursor: pointer;

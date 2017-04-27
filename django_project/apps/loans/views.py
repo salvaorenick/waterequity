@@ -24,7 +24,6 @@ def createLoanView(request):
             currency='usd',
             customer=customer.id,
             metadata={
-                'loan-option': request.POST['loan-option'],
                 'accept-terms': request.POST['accept-terms'],
             }
         )

@@ -423,8 +423,6 @@ a.fill {
         }
         .thanks {
             margin-top: 100%;
-
-            @include transition(margin, 0.2s, opacity, 0.5s);
         }
         &:hover {
             cursor: pointer;
@@ -443,6 +441,8 @@ a.fill {
         opacity: 0;
         padding: 34px 54px;
         margin-top: calc(50% - 240px);
+
+        @include transition(margin, 0.2s, opacity, 0.5s);
 
         @media (max-width: 768px) {
             margin-top: 80px;

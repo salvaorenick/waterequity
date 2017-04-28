@@ -120,8 +120,10 @@ $('.input-value').change(function () {
 });
 
 function animateLoanFormUp() {
-    $('html, body').animate({ scrollTop: $('#make-loan').offset().top }, 150);
-    $('nav.navbar').addClass('hide-nav');
+    $('html, body').animate({ scrollTop: $('#make-loan').offset().top }, 250);
+    setTimeout(function () {
+        $('nav.navbar').addClass('hide-nav');
+    }, 350);
 }
 
 function loanFormSuccess() {

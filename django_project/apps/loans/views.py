@@ -12,7 +12,7 @@ def createLoanView(request):
         return HttpResponse(status=404)
 
     try:
-        amount = str(int(request.POST['amount']) * 100)
+        amount = str(int(request.POST['amount'] * 100))
 
         customer = stripe.Customer.create(
             email=request.POST['email-address'],

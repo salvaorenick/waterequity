@@ -284,7 +284,7 @@ label.btn {
             opacity: 0;
         }
         &.active::after {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.05 14.58"><defs><style>.a{fill:#00b0e7;}</style></defs><title>check</title><polygon class="a" points="13.88 0 18.05 4.2 7.66 14.58 0 7.01 4.18 2.81 7.6 6.27 13.88 0"/></svg>');
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.05 14.58"><title>check</title><polygon points="13.88 0 18.05 4.2 7.66 14.58 0 7.01 4.18 2.81 7.6 6.27 13.88 0" fill="#00b0e7"/></svg>');
             background-repeat: no-repeat;
             background-position: 0 4px;
             opacity: 1;

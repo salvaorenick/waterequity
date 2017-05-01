@@ -284,7 +284,7 @@ label.btn {
             opacity: 0;
         }
         &.active::after {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.05 14.58"><title>check</title><polygon points="13.88 0 18.05 4.2 7.66 14.58 0 7.01 4.18 2.81 7.6 6.27 13.88 0" fill="#00b0e7"/></svg>');
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOC4wNSAxNC41OCI+PHRpdGxlPmNoZWNrPC90aXRsZT48cG9seWdvbiBwb2ludHM9IjEzLjg4IDAgMTguMDUgNC4yIDcuNjYgMTQuNTggMCA3LjAxIDQuMTggMi44MSA3LjYgNi4yNyAxMy44OCAwIiBmaWxsPSIjMDBiMGU3Ii8+PC9zdmc+');
             background-repeat: no-repeat;
             background-position: 0 4px;
             opacity: 1;

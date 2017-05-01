@@ -12,15 +12,28 @@ def createLoanView(request):
         return HttpResponse(status=404)
 
     try:
-        amount = str(int(request.POST['amount'] * 100))
+        amount = str(int(float(request.POST['amount']) * 100))
+        emailAddress = request.POST['email-address']
+        stripeToken = request.POST['stripeToken'],
+        accept = request.POST['accept-terms'],
 
+    except Exception:
+        return JsonResponse({'message': 'Please fill out all the fields.'}, status=501)
+
+    try:
         customer = stripe.Customer.create(
             email=request.POST['email-address'],
             source=request.POST['stripeToken'],
         )
 
+    except stripe.error.StripeError as e:
+        body = e.json_body
+        err = body['error']
+        return JsonResponse({'message': err['message'] }, status=401)
+
+    try:
         stripe.Charge.create(
-            amount=amount,
+            amount=str(int(float(request.POST['amount']) * 100)),
             currency='usd',
             customer=customer.id,
             metadata={

@@ -121,7 +121,7 @@ $('.input-value').change(function() {
 });
 
 function animateLoanFormUp() {
-    $('html, body').animate({scrollTop: $('#make-loan').offset().top}, 250);
+    $('html, body').animate({ scrollTop: 0 }, 250);
     setTimeout(
         function() {
             $('nav.navbar').addClass('hide-nav');
@@ -130,7 +130,8 @@ function animateLoanFormUp() {
 }
 
 function loanFormSuccess() { // eslint-disable-line
-    $('form, .hero').fadeOut();
+    $('form').fadeOut();
+    $('.hero').fadeOut();
     $('#make-loan h2').first().fadeOut();
     $('.thanks').css({
         'display': 'block',
@@ -138,7 +139,7 @@ function loanFormSuccess() { // eslint-disable-line
     });
     $('#make-loan').css({
         'min-height': window.screen.height,
-        'background-image': 'url("http://waterequity.s3.amazonaws.com/media/filer_public/a3/b2/a3b29d3b-6059-4403-8ca1-9ba84f694cb7/ranjaana-and-her-new-waterpoint.jpg")',
+        'background-image': 'url("https://waterequity.s3.amazonaws.com/media/filer_public/a3/b2/a3b29d3b-6059-4403-8ca1-9ba84f694cb7/ranjaana-and-her-new-waterpoint.jpg")',
         'background-position-y': 0
     });
     loanForm = null; // eslint-disable-line

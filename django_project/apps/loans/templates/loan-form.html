@@ -23,23 +23,22 @@ Make an Impact
                 {% csrf_token %}
                 <div class="form-group row" data-toggle="buttons">
                     <label class="radio-inline radio btn col-xs-1" for="radio-value">
-                        <input type="radio" name="amount" id="radio-value" data-stripe="amount"/>
+                        <input type="radio" min="100" class="amount" name="amount" id="radio-value" data-stripe="amount"/>
                     </label>
                     <div class="col-xs-3">
-                        <input type="text" class="form-control input-value" style="margin-top: -8px"/>
+                        <input min="100" type="text" class="form-control input-value" style="margin-top: -8px" />
                     </div>
-                    <span class="col-md-6">$25 is all it takes to make an impact</span>
+                    <span class="col-xs-7">$100 is all it takes to make an impact</span>
                     <br>
                     <label class="radio-inline radio btn col-xs-4" for="220">
                         <input type="radio" name="amount" id="220" data-stripe="amount" value="220" /> <h2>$220</h2>
                     </label>
-                    <span class="col-md-6">Brings water or the dignity of a toilet to a family living in the crisis</span>
+                    <span class="col-xs-7">Brings water or the dignity of a toilet to a family living in the crisis</span>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-8">
                         <label>Card Number:</label>
                         <input class="form-control cc_number"
-                            placeholder="&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull;"
                             data-stripe="number"
                             autocomplete="cc-number"
                             required creditcard />
@@ -90,7 +89,6 @@ Make an Impact
                         <input type="text"
                             class="form-control streetAddress"
                             autocomplete="street-address"
-                            placeholder="1 Royal Way"
                             data-stripe="address_line1" />
                     </div>
                 </div>
@@ -100,7 +98,6 @@ Make an Impact
                         <input type="text"
                             class="form-control address_city"
                             autocomplete="billing locality"
-                            placeholder="Kansas City"
                             data-stripe="address_city" />
                     </div>
                     <div class="col-xs-4">
@@ -108,7 +105,6 @@ Make an Impact
                         <input type="text"
                             class="form-control"
                             autocomplete="postal-code"
-                            placeholder="64129"
                             data-stripe="address_zip" />
                     </div>
                 </div>
@@ -118,7 +114,6 @@ Make an Impact
                         <input type="text"
                             class="form-control"
                             autocomplete="billing region"
-                            placeholder="MO"
                             data-stripe="address_state" />
                     </div>
                     <div class="col-xs-4">
@@ -126,17 +121,17 @@ Make an Impact
                         <input type="text"
                             class="form-control"
                             autocomplete="billing country"
-                            placeholder="US"
                             data-stripe="address_country" />
                     </div>
                 </div>
                 <div class="form-group checkbox row" data-toggle="buttons"style="margin-top: 34px">
                     <label class="btn check-inline check color--white center-block" for="agree">
                       <input type="checkbox" value="true" name="accept-terms" id="agree" required />
-                      <span class="col-xs-12">I accept terms of agreement <br/><a href="/terms-of-use/" target="_blank">WaterEquity Terms of Use Agreement</a></span>
+                      <span class="col-xs-12">I accept terms of agreement </span>
                     </label>
                 </div>
-                <div class="payment-errors alert alert-warning collapse"></div>
+                <a style="margin:-52px 0px 20px 40px;display:block;position:relative" href="/terms-of-use/" target="_blank">WaterEquity Terms of Use Agreement</a>               
+		<div class="payment-errors alert alert-warning collapse"></div>
                 <div class="form-group text-center ">
                     <input type="submit" class="btn lend" value="Confirm Payment" />
                 </div>
@@ -154,7 +149,6 @@ Make an Impact
                     var form = $('#loanForm');
 
                     Stripe.setPublishableKey('{{stripe_public_key}}');
-
                     form.validate({
                         submitHandler: function (form) {
                             return false;

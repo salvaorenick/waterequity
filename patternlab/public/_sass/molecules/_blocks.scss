@@ -55,6 +55,11 @@
     @media (min-width: 768px) {
         padding-top: 228px !important;
         padding-bottom: 228px !important;
+
+        .news-form & {
+            padding-top: 208px !important;
+            padding-bottom: 184px !important;
+        }
     }
     &.home {
         .container {
@@ -310,18 +315,37 @@ a.fill {
     p,
     label {
         color: $grey;
-    }
-    p {
-        line-height: 1em;
-        margin-bottom: 1em;
+        font-size: 16px;
+        font-weight: inherit;
+        line-height: 1.8em;
     }
     .modal-content {
-        padding: 24px;
+        padding: 5px;
+    }
+    .modal-dialog {
+        width: calc(100% - 48px);
+        margin: 24px auto;
+        .col-md-4 {
+            padding: 24px;
+            p:first-child {
+                margin-bottom: 8px;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    @media (min-width: 768px) {
+        .modal-dialog {
+            width: calc(100% - 10px);
+            max-width: 838px;
+            .col-md-4 {
+                padding: 0 24px;
+            }
+        }
     }
 }
 
-.footer,
-.model.news-form {
+.footer {
     .btn {
         background-color: $subtle-blue;
         color: white;

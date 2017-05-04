@@ -25,6 +25,9 @@ h2 {
     .hero & {
         font-family: $font-cta;
     }
+    .news-form & {
+        font-size: 20px;
+    }
 }
 
 h3 {
@@ -104,6 +107,17 @@ h3 {
             rgba(99, 176, 229, 0.85) 6px,
             rgba(99, 176, 229, 0.85) 50px
        );
+    .news-form & {
+        line-height: 38px;
+        background:
+            repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 6px,
+                rgba(99, 176, 229, 0.85) 6px,
+                rgba(99, 176, 229, 0.85) 38px
+           );
+    }
 
     @media (max-width: 767px) {
         position: absolute;

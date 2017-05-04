@@ -86,61 +86,6 @@ form {
         display: block;
         width: 100%;
     }
-    p {
-        .news-form & {
-            text-align: center;
-            line-height: 1em;
-        }
-    }
-    .news-form & {
-        .radio input[type="radio"],
-        .radio-inline input[type="radio"] {
-            margin-top: 4px;
-            width: 16px;
-            background: transparent;
-        }
-        input[type="email"],
-        input[type="text"] {
-            height: 69px;
-        }
-    }
-}
-
-input {
-    .news-form & {
-        position: relative;
-        display: inline-block;
-        padding-left: 0;
-        color: white;
-        line-height: $control-line-height;
-        cursor: pointer;
-        outline: none;
-        text-align: center;
-        border: none;
-        background-color: $control-background-color;
-        margin-bottom: 16px;
-        &:placeholder {
-            color: $medium-blue;
-            opacity: 1;
-            text-align: center;
-        }
-        &::-webkit-input-placeholder {
-            color: $medium-blue;
-        }
-        &[type="submit"] {
-            background-color: $subtle-blue;
-            line-height: 1em;
-            color: white;
-            border-color: $subtle-blue;
-            padding: 24px;
-            &:hover,
-            &:active {
-                background-color: white;
-                color: $brand-dark-blue;
-                border: solid 1px $brand-dark-blue;
-            }
-        }
-    }
 }
 
 .invest-form-special {
@@ -283,6 +228,9 @@ input {
 .checkbox input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
     margin-top: 9px;
+    .news-form & {
+        margin-top: 5px;
+    }
 }
 
 //

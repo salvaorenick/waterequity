@@ -63,6 +63,16 @@ input[type="submit"] {
             background-color: white;
         }
     }
+    .news-form & {
+        background-color: $medium-blue;
+        color: white;
+        border-color: $medium-blue;
+        &:hover,
+        &:active {
+            background-color: $brand-dark-blue;
+            border-color: $brand-dark-blue;
+        }
+    }
 
     @media (max-width: 768px) {
         padding: 20px;

@@ -235,28 +235,28 @@ function readCookie(name) {
     return null;
 }
 
-var popNCookie = function(name, value, days) {
+var popNCookie = function(days) {
     $('#join').modal('show');
-    createCookie(name, value, days);
+    createCookie('WaterEquity', 'joinMovementPopupDisplayed', days);
 };
 
 function autoPopper() {
     if (readCookie('WaterEquity') !== 'joinMovementPopupDisplayed') {
         document.addEventListener('mouseleave', function(e){
             if(e.clientY < 0) {
-                popNCookie('WaterEquity', 'joinMovementPopupDisplayed', 3);
+                popNCookie(3);
             }
         }, false);
 
         if (window.pageYOffset > 1600) {
-            popNCookie('WaterEquity', 'joinMovementPopupDisplayed', 3);
+            popNCookie(3);
         }
     }
 }
 
 $(function() {
     $('.join').on('click', function() {
-        popNCookie('WaterEquity', 'joinMovementPopupDisplayed', 30);
+        popNCookie(30);
     });
 });
 

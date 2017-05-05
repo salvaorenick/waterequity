@@ -220,10 +220,13 @@ label.btn {
         }
     }
     &.check {
+        &::before {
+            top: -6px;
+        }
         &::after {
             height: 18px;
             width: 18px;
-            top: -5px;
+            top: -4px;
             left: 5px;
             background-color: transparent;
             opacity: 0;

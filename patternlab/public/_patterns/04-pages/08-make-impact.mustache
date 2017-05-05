@@ -1,87 +1,42 @@
 {{> organisms-header }}
-<div class="container-fluid hero img-bg" style="background-image: url(../../images/impactGirls.jpg);background-attachment: fixed">
+<div class="container-fluid hero img-bg" style="background-image: url(https://waterequity.s3.amazonaws.com/media/filer_public/6e/5a/6e5a0a92-3b24-4cdd-907e-446c0da92efc/make-a-loan-for-the-people.jpg); background-attachment: fixed">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-12 center-block text-center">
-                <h2 class="color--white ribbon-bg">Make an investment.<br>Make an impact</h2>
+                <h2 class="color--white ribbon-bg">Make an loan<br>Make an impact</h2>
             </div>
         </div>
     </div>
 </div>
-<div class="container">
+<div id="make-loan" class="container-fluid container_padding--medium background--xtra-light-blue text-center">
     <div class="row">
-        <div class="col-md-8 col-sm-12 center-block text-center container_padding--medium">
-            <h2>How your loan works</h2>
-            <p>Your investment in WaterEquity funds will unleash the potential of high-growth and purpose-driven enterprises to reach hundreds of millions of people in need of access to improved water and sanitation. Helping to transform lives.</p>
-        </div>
-    </div>
-</div>
-<div class="container-fluid container_padding--medium background--light-blue text-center" style="background-color: #82c1ea">
-    <div class="row">
-        <div class="col-md-12">
-            <img class="img-responsive center-block" src="http://waterequity.s3.amazonaws.com/media/filer_public/27/4d/274d4211-b833-43ea-97b2-24ccec0ec7ca/waterloanprocess.png" alt="wataerequity loan process" />
-        </div>
-    </div>
-</div>
-<div id="risks" class="container-fluid container_padding--medium background--xtra-light-blue">
-    <h2 class="text-center">Overview and Risks</h2>
-    <div class="col-md-8 center-block">
-        <div class="media">
-            <div class="media-left media-middle">
-                <img class="media-object" src="../../images/pipeline.png" alt="Develop the pipeline">
-            </div>
-            <div class="media-body">
-                <h3 class="media-heading brand-dark-blue">Develop the pipeline</h3>
-                <p>Building on 13 years of experience with WaterCredit, WaterEquity will identify investment-ready enterprises able to serve the water and sanitation needs of the world’s poor. This pipeline for investment will include microfinance institutions, product manufacturers and water utilities.</p>
-            </div>
-        </div>
-        <div class="media">
-            <div class="media-left media-middle">
-                <img class="media-object" src="../../images/unlockCapital.png" alt="Unlock global capital markets ">
-            </div>
-            <div class="media-body">
-                <h3 class="media-heading brand-dark-blue">Unlock global capital markets </h3>
-                <p>WaterEquity will connect social impact investors with enterprises that have the potential to reach hundreds of millions of people who lack access to safe water and sanitation.</p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="container text-center">
-            <a class="btn" href="#">Read Full Agreement</a>
-        </div>
-    </div>
-</div>
-<div id="make-loan" class="container-fluid container_padding--medium background--light-blue text-center img-bg" style="background-color: #82c1ea; background-image: url(https://waterequity.s3.amazonaws.com/media/filer_public/23/1b/231b9d84-5199-4eeb-8136-4bd1f41d4128/happykids.jpg);">
-    <div class="row">
-        <div class="col-md-8 center-block text-center color--white">
+        <div class="col-md-8 center-block text-center">
             <h2>Make a loan</h2>
-            <form id="loanForm" class="form-horizontal text-left center-block" style="margin-top: 80px">
-                <!-- {% csrf_token %} -->
+            <form id="loanForm" class="form-horizontal text-left center-block">
                 <div class="form-group row" data-toggle="buttons">
                     <label class="radio-inline radio btn col-xs-1" for="radio-value">
-                        <input type="radio" name="amount" id="radio-value" data-stripe="amount"/>
+                        <input type="radio" min="100" class="amount" name="amount" id="radio-value" data-stripe="amount" /> <h2 style="position: absolute; right: -10px;top: 5px;">$</h2>
                     </label>
                     <div class="col-xs-3">
-                        <input type="text" class="form-control input-value" style="margin-top: -8px"/>
+                        <input min="100" type="text" class="form-control input-value" style="margin-top: -8px" />
                     </div>
-                    <span class="col-xs-7" style="margin-top: -12px">$25 is all it takes to make an impact</span>
+                    <span class="col-xs-7" style="padding: 0">$100 is all it takes to make an impact</span>
                     <br>
-                    <label class="radio-inline radio btn col-xs-4" for="220">
-                        <input type="radio" name="amount" id="220" data-stripe="amount" value="220" /> <h2>$220</h2>
+                    <label class="radio-inline radio btn col-xs-4 active" for="230">
+                        <input type="radio" name="amount" id="230" data-stripe="amount" value="230" checked /> <h2>$230</h2>
                     </label>
-                    <span class="col-xs-7" style="margin-top: -10px">Brings water or the dignity of a toilet to a family living in the crisis</span>
+                    <span class="col-xs-7" style="padding: 0; margin-top: -9px">Brings water or the dignity of a toilet to a family living in the crisis</span>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-8">
                         <label>Card Number:</label>
-                        <input
-                            class="form-control cc_number"
+                        <input class="form-control cc_number"
                             data-stripe="number"
                             autocomplete="cc-number"
                             required creditcard />
                     </div>
                     <div class="col-xs-4">
-                        <label>Expiration Date:</label>
+                        <label>Expires:</label>
                         <input class="form-control cc_exp_month"
                             placeholder="MM/YY"
                             data-stripe="exp"
@@ -97,8 +52,8 @@
                             class="form-control name"
                             autocomplete="name"
                             data-stripe="name"
-                            required
-                            minlength="2" />
+                            name="name"
+                            required />
                     </div>
                     <div class="col-xs-4">
                         <label>Card Code:</label>
@@ -111,77 +66,46 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-xs-12">
-                        <label>Email Address:</label>
+                        <label>Email Address: <em>We'll use this to update you on your loan</em></label>
                             <input type="email"
                                 class="form-control email"
                                 autocomplete="email"
                                 data-stripe="email-address"
+                                name="email-address"
                                 required />
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-xs-12">
-                        <label>Address:</label>
-                        <input type="text"
-                            class="form-control streetAddress"
-                            autocomplete="street-address"
-                            placeholder="1 Royal Way"
-                            data-stripe="address_line1" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-xs-12">
-                        <label>City</label>
-                        <input type="text"
-                            class="form-control address_city"
-                            autocomplete="address-city"
-                            placeholder="Kansas City"
-                            data-stripe="address_city" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-xs-4">
-                        <label>State</label>
-                        <input type="text"
-                            class="form-control"
-                            autocomplete="address-state"
-                            placeholder="MO"
-                            data-stripe="address_state" />
-                    </div>
-                    <div class="col-xs-4">
-                        <label>Zip</label>
+                    <div class="col-xs-6">
+                        <label>Zip:</label>
                         <input type="text"
                             class="form-control"
                             autocomplete="postal-code"
-                            placeholder="64129"
                             data-stripe="address_zip" />
                     </div>
-                </div>
-                <div class="form-group row" data-toggle="buttons">
-                    <p class="col-xs-12"><br>At the close of this loan agreement, I would like my loan principal:<br><br></p>
-                    <label class="radio-inline radio btn active" for="relent">
-                        <input type="radio" name="loan-option" id="relent" value="relend" required checked />
-                        <span class="col-xs-12 wrap">to be re-lent, so that my loan capital can recycle to support another loan.</span>
-                    </label>
-                    <label class="radio-inline radio btn" for="returned">
-                        <input type="radio" name="loan-option" id="returned" value="return"/>
-                         <span class="col-xs-12">returned to me.</span>
-                    </label>
+                    <div class="col-xs-6">
+                        <label>Country:</label>
+                        <input type="text"
+                            class="form-control"
+                            autocomplete="billing country"
+                            data-stripe="address_country" />
+                    </div>
                 </div>
                 <div class="form-group checkbox row" data-toggle="buttons"style="margin-top: 34px">
                     <label class="btn check-inline check color--white center-block" for="agree">
                       <input type="checkbox" value="true" name="accept-terms" id="agree" required />
-                      <span class="col-xs-12">I accept the terms of agreement</span>
+                      <span class="col-xs-12">I accept terms of agreement </span>
                     </label>
                 </div>
+                <a style="margin:-52px 0px 20px 40px;display:block;position:relative" href="/terms-of-use/" target="_blank">WaterEquity Terms of Use Agreement</a>
                 <div class="payment-errors alert alert-warning collapse"></div>
                 <div class="form-group text-center ">
-                    <input type="submit" class="btn lend" value="Charge my Card" />
+                    <input type="submit" class="btn lend" value="Confirm Payment" />
                 </div>
             </form>
             <div class="col-md-9 center-block padding-54 background--light-blue color--white thanks">
-                <h2>Thank you for your loan</h2>
-                <p>Please check your inbox.<br>A confirmation email has been sent.</p>
+                <h2>Thank you for your loan!</h2>
+                <p>Please check your inbox for a confirmation email. If you have any questions please email us at <a href="mailto:info@waterequity.org" class="color--white">info@waterequity.org</a> or call <a href="tel:8168008100" class="color--white">(816) 800-8100</a>.</p>
             </div>
 
             <script src="https://js.stripe.com/v2/"></script>

@@ -488,6 +488,30 @@ a.fill {
         height: 44px;
         font-size: 18px;
     }
+    // div[class^='col']
+    div[class$='3'] {
+        position: static;
+        label.error {
+            position: absolute;
+            width: 455px;
+            top: 38px;
+        }
+        input.error {
+            margin-bottom: 60px;
+        }
+    }
+    input.error {
+        background-color: rgb(250, 255, 189);
+    }
+    label.error {
+        &::before {
+            content: '*';
+            color: red;
+            font-size: 40px;
+            position: relative;
+            top: 16px;
+        }
+    }
     .thanks {
         display: none;
         opacity: 0;

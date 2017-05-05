@@ -117,8 +117,9 @@ $('.input-value').focus(function() {
     $('#radio-value').parent('label').addClass('active');
 });
 
-$('.input-value').change(function() {
-    $('#radio-value').val($(this).val());
+
+$('.input-value').on('change', function(event){
+    $('#radio-value').val(event.target.value).prop('checked', true);
 });
 
 function animateLoanFormUp() {

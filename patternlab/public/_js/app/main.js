@@ -33,6 +33,7 @@ $(function() {
     setInterval(function() {
         if (scrollTimeOut) {
             setNavClass();
+            autoPopper();
         }
 
     }, 250);
@@ -181,15 +182,29 @@ function readCookie(name) {
     return null;
 }
 
-function showPopup() {
-    if (readCookie('WaterEquity') !== 'newsPopupShown') {
+var popNCookie = function(name, value, days) {
+    $('#join').modal('show');
+    createCookie(name, value, days);
+};
+
+function autoPopper() {
+    if (readCookie('WaterEquity') !== 'joinMovementPopupDisplayed') {
         document.addEventListener('mouseleave', function(e){
             if(e.clientY < 0) {
-                $('#join').modal('show');
-                createCookie('WaterEquity', 'newsPopupShown', 30);
+                popNCookie('WaterEquity', 'joinMovementPopupDisplayed', 3);
             }
         }, false);
+
+        if (window.pageYOffset > 1600) {
+            popNCookie('WaterEquity', 'joinMovementPopupDisplayed', 3);
+        }
     }
 }
 
-showPopup();
+$(function() {
+    $('.join').on('click', function() {
+        popNCookie('WaterEquity', 'joinMovementPopupDisplayed', 30);
+    });
+});
+
+autoPopper();

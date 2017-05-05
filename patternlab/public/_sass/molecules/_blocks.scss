@@ -312,6 +312,7 @@ a.fill {
 }
 
 .modal.news-form {
+
     p,
     label {
         color: $grey;
@@ -338,9 +339,32 @@ a.fill {
         .modal-dialog {
             width: calc(100% - 10px);
             max-width: 838px;
+            left: 50%;
+            margin-left: -419px;
+            display: inline-block;
+            form {
+                float: left;
+            }
             .col-md-4 {
                 padding: 0 24px;
             }
+        }
+        &::before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -4px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+        .row-eq-height {
+            display: block;
+        }
+        form {
+            float: none !important;
+            margin: 0 auto 24px;
         }
     }
 }

@@ -220,6 +220,11 @@ label.btn {
         }
     }
     &.check {
+        label.error {
+            position: absolute;
+            top: 20px;
+            left: -20px;
+        }
         &::before {
             top: -6px;
         }

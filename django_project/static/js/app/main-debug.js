@@ -240,15 +240,17 @@ var popNCookie = function popNCookie(days) {
 };
 
 function autoPopper() {
-    if (readCookie('WaterEquity') !== 'joinMovementPopupDisplayed' || poppedThisSession === false) {
-        document.addEventListener('mouseleave', function (e) {
-            if (e.clientY < 0) {
+    if (readCookie('WaterEquity') !== 'joinMovementPopupDisplayed') {
+        if (poppedThisSession === false) {
+            document.addEventListener('mouseleave', function (e) {
+                if (e.clientY < 0) {
+                    popNCookie(3);
+                }
+            }, false);
+
+            if (window.pageYOffset > 1600) {
                 popNCookie(3);
             }
-        }, false);
-
-        if (window.pageYOffset > 1600) {
-            popNCookie(3);
         }
     }
 }

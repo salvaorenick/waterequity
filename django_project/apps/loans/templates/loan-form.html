@@ -21,9 +21,9 @@ Make an Impact
             <h2>Make a loan</h2>
             <form id="loanForm" class="form-horizontal text-left center-block">
                 {% csrf_token %}
-                <div class="form-group row" data-toggle="buttons">
+                <div class="form-group row" id="amount" data-toggle="buttons">
                     <label class="radio-inline radio btn col-xs-1" for="radio-value">
-                        <input type="radio" min="100" class="amount" name="amount" id="radio-value" data-stripe="amount" /> <h2 style="position: absolute; right: -10px;top: 5px;">$</h2>
+                        <input type="radio" min="100" max="500000" class="amount" name="amount" id="radio-value" data-stripe="amount" /> <h2 style="position: absolute; right: -10px;top: 5px;">$</h2>
                     </label>
                     <div class="col-xs-3">
                         <input min="100" type="text" class="form-control input-value" style="margin-top: -8px" />
@@ -124,13 +124,19 @@ Make an Impact
                     var form = $('#loanForm');
 
                     Stripe.setPublishableKey('{{stripe_public_key}}');
+
                     form.validate({
                         submitHandler: function (form) {
                             return false;
                         },
                         errorPlacement: function(error, element) {
-                            error.delay(1000).insertAfter(element);
+                            error.delay(1000).appendTo(element.parent($('div.form-group')));
                         }
+                    });
+
+                    $.validator.addClassRules('cc_number', {
+                         required: true,
+                         creditcard: true
                     });
 
                     form.submit(function(e) {

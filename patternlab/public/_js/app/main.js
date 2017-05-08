@@ -236,13 +236,16 @@ function readCookie(name) {
     return null;
 }
 
+var poppedThisSession = false;
+
 var popNCookie = function(days) {
     $('#join').modal('show');
     createCookie('WaterEquity', 'joinMovementPopupDisplayed', days);
+    poppedThisSession = true;
 };
 
 function autoPopper() {
-    if (readCookie('WaterEquity') !== 'joinMovementPopupDisplayed') {
+    if (readCookie('WaterEquity') !== 'joinMovementPopupDisplayed' || poppedThisSession === true) {
         document.addEventListener('mouseleave', function(e){
             if(e.clientY < 0) {
                 popNCookie(3);

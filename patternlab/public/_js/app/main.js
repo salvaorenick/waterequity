@@ -246,16 +246,14 @@ var popNCookie = function(days) {
 
 function autoPopper() {
     if (readCookie('WaterEquity') !== 'joinMovementPopupDisplayed') {
-        if (poppedThisSession === false) {
-            document.addEventListener('mouseleave', function(e){
-                if(e.clientY < 0) {
-                    popNCookie(3);
-                }
-            }, false);
-
-            if (window.pageYOffset > 1600) {
+        document.addEventListener('mouseleave', function(e){
+            if(e.clientY < 0 && poppedThisSession === false) {
                 popNCookie(3);
             }
+        }, false);
+
+        if (window.pageYOffset > 1600 && poppedThisSession === false) {
+            popNCookie(3);
         }
     }
 }

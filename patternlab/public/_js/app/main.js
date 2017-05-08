@@ -245,7 +245,7 @@ var popNCookie = function(days) {
 };
 
 function autoPopper() {
-    if (readCookie('WaterEquity') !== 'joinMovementPopupDisplayed' || poppedThisSession === true) {
+    if (readCookie('WaterEquity') !== 'joinMovementPopupDisplayed' || poppedThisSession === false) {
         document.addEventListener('mouseleave', function(e){
             if(e.clientY < 0) {
                 popNCookie(3);

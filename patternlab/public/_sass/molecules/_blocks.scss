@@ -496,7 +496,7 @@ a.fill {
         height: 44px;
         font-size: 18px;
     }
-    div[class$='3'] {
+    .col-sm-3.col-xs-6 {
         position: static;
         label.error {
             position: absolute;
@@ -511,8 +511,23 @@ a.fill {
             padding: 0 6px 0 8px;
         }
     }
-    input.error {
-        background-color: rgb(250, 255, 189);
+    input {
+        &.input-value {
+            padding-left: 22px;
+            padding-top: 4px;
+            margin-top: -8px;
+            margin-left: -6px;
+            font-size: 30px !important;
+            font-family: "GothamBold", sans-serif;
+
+            @media (max-width: 768px) {
+                padding-left: 34px;
+                margin-left: -20px;
+            }
+        }
+        &.error {
+            background-color: rgb(250, 255, 189);
+        }
     }
     label {
         h2 {
@@ -532,6 +547,11 @@ a.fill {
 
             @media (max-width: 768px) {
                 margin-left: 26px;
+            }
+        }
+        &.col-xs-1 {
+            @media (max-width: 580px) {
+                width: 48px;
             }
         }
         &.btn {
@@ -558,22 +578,23 @@ a.fill {
         position: relative;
 
         @media (max-width: 768px) {
-            margin-left: 0;
+            margin: 0;
         }
     }
     .center-block {
         margin-left: auto;
         margin-right: auto;
-        span {
+        span.accept {
             margin-top: -5px !important;
 
             @media (max-width: 768px) {
                 margin: -5px 0 12px 22px !important;
             }
         }
-
-        @media (max-width: 768px) {
-            padding-left: 0;
+        .center-block {
+            @media (max-width: 768px) {
+                padding-left: 0;
+            }
         }
 
     }

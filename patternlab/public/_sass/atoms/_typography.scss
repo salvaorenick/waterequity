@@ -94,6 +94,10 @@ h3 {
     font-family: $font-heading;
 }
 
+a[href^="tel"] {
+    white-space: nowrap;
+}
+
 .ribbon-bg {
     line-height: 50px;
     padding: 4px 24px 0;

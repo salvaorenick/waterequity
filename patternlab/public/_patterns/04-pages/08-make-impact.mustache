@@ -15,27 +15,27 @@
             <form id="loanForm" class="form-horizontal text-left center-block">
                 <div class="form-group row" data-toggle="buttons">
                     <label class="radio-inline radio btn col-xs-1" for="radio-value">
-                        <input type="radio" min="100" class="amount" name="amount" id="radio-value" data-stripe="amount" /> <h2 style="position: absolute; right: -10px;top: 5px;">$</h2>
+                        <input type="radio" min="100" class="amount" name="amount" id="radio-value" data-stripe="amount" /> <h2 class="dollar-only">$</h2>
                     </label>
                     <div class="col-xs-3">
-                        <input min="100" max="500000" type="text" class="form-control input-value" style="margin-top: -8px" />
+                        <input min="100" max="500000" type="text" class="form-control input-value" />
                     </div>
-                    <span class="col-xs-7" style="padding: 0">$100 is all it takes to make an impact</span>
+                    <span class="col-sm-7 col-xs-11" style="padding-right: 0">$100 is all it takes to make an impact</span>
                     <br>
                     <label class="radio-inline radio btn col-xs-4 active" for="230">
                         <input type="radio" name="amount" id="230" data-stripe="amount" value="230" checked /> <h2>$230</h2>
                     </label>
-                    <span class="col-xs-7" style="padding: 0; margin-top: -9px">Brings water or the dignity of a toilet to a family living in the crisis</span>
+                    <span class="col-sm-7 col-xs-12" style="padding-right: 0; margin-top: -9px">Brings water or the dignity of a toilet to a family living in the crisis</span>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-8">
+                    <div class="col-sm-8">
                         <label>Card Number:</label>
                         <input class="form-control cc_number"
                             data-stripe="number"
                             autocomplete="cc-number"
                             required creditcard />
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-sm-4">
                         <label>Expires:</label>
                         <input class="form-control cc_exp_month"
                             placeholder="MM/YY"
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-md-8">
+                    <div class="col-sm-8">
                         <label>Name on Card:</label>
                         <input type="text"
                             class="form-control name"
@@ -55,7 +55,7 @@
                             name="name"
                             required />
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-sm-4">
                         <label>Card Code:</label>
                         <input type="text"
                             class="form-control cvc"
@@ -91,13 +91,15 @@
                             data-stripe="address_country" />
                     </div>
                 </div>
-                <div class="form-group checkbox row" data-toggle="buttons"style="margin-top: 34px">
-                    <label class="btn check-inline check color--white center-block" for="agree">
-                      <input type="checkbox" value="true" name="accept-terms" id="agree" required />
-                      <span class="col-xs-12">I accept terms of agreement </span>
-                    </label>
+                <div class="row" style="margin-top: 34px">
+                    <div class="form-group checkbox col-sm-8 col-xs-12 center-block" data-toggle="buttons" >
+                        <label class="btn check-inline check color--white center-block" for="agree">
+                          <input type="checkbox" value="true" name="accept-terms" id="agree" required />
+                          <span class="col-xs-12">I accept terms of agreement </span>
+                        </label>
+                    </div>
                 </div>
-                <a style="margin:-52px 0px 20px 40px;display:block;position:relative" href="/terms-of-use/" target="_blank">WaterEquity Terms of Use Agreement</a>
+                <a href="/terms-of-use/" class="terms" target="_blank">WaterEquity Terms of Use Agreement</a>
                 <div class="payment-errors alert alert-warning collapse"></div>
                 <div class="form-group text-center ">
                     <input type="submit" class="btn lend" value="Confirm Payment" />

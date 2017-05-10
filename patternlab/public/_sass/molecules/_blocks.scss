@@ -451,6 +451,9 @@ a.fill {
 }
 
 #make-loan {
+    background-repeat: no-repeat;
+    background-size: cover;
+
     @include transition(top, 0.5s, height, 0.5s, padding, 0.5s, bottom, 0.5s);
     &.fix {
         position: fixed;
@@ -480,6 +483,11 @@ a.fill {
             }
         }
     }
+    span {
+        @media (max-width: 768px) {
+            margin: -12px 0 16px !important;
+        }
+    }
     form {
         position: relative;
         top: 24px;
@@ -488,7 +496,6 @@ a.fill {
         height: 44px;
         font-size: 18px;
     }
-    // div[class^='col']
     div[class$='3'] {
         position: static;
         label.error {
@@ -499,18 +506,76 @@ a.fill {
         input.error {
             margin-bottom: 60px;
         }
+
+        @media (max-width: 768px) {
+            padding: 0 6px 0 8px;
+        }
     }
     input.error {
         background-color: rgb(250, 255, 189);
     }
-    label.error {
-        &::before {
-            content: '*';
-            color: red;
-            font-size: 40px;
-            position: relative;
-            top: 16px;
+    label {
+        h2 {
+            margin: -20px 0 0 21.33333%;
+            font-family: $font-heading;
+
+            &.dollar-only {
+                position: absolute;
+                right: -32px;
+                top: 6px;
+                z-index: 2;
+
+                @media (max-width: 768px) {
+                    right: -24px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                margin-left: 26px;
+            }
         }
+        &.btn {
+            &.check,
+            &.radio {
+                @media (min-width: 768px) {
+                    height: 52px;
+                }
+            }
+        }
+        &.error {
+            &::before {
+                content: '*';
+                color: red;
+                font-size: 40px;
+                position: relative;
+                top: 16px;
+            }
+        }
+    }
+    a.terms {
+        margin: -40px 0 20px 88px;
+        display: block;
+        position: relative;
+
+        @media (max-width: 768px) {
+            margin-left: 0;
+        }
+    }
+    .center-block {
+        margin-left: auto;
+        margin-right: auto;
+        span {
+            margin-top: -5px !important;
+
+            @media (max-width: 768px) {
+                margin: -5px 0 12px 22px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            padding-left: 0;
+        }
+
     }
     .thanks {
         display: none;

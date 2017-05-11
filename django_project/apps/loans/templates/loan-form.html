@@ -121,51 +121,72 @@ Make an Impact
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.min.js"></script>
             <script>
+                var formValidator;
                 $(function() {
                     var form = $('#loanForm');
 
-                    Stripe.setPublishableKey('{{stripe_public_key}}');
+                    Stripe.setPublishableKey('pk_test_zD30U7Uo8bWMbZXot8UyBkoK');
 
-                    form.validate({
-                        submitHandler: function (form) {
-                            return false;
+                    $.validator.addMethod('ccExpire', function (value, element) {
+                        var today = new Date(),
+                            startDate = new Date(today.getFullYear(), today.getMonth(), 1),
+                            dateEntered = value,
+                            slash = dateEntered.indexOf('/'),
+                            parsableDateEntered = dateEntered.substr( 0, slash ) + '/1' + dateEntered.substr( slash );
+
+                        return Date.parse(startDate) <= Date.parse(parsableDateEntered);
+                    }, '"MM/YY" or "MM/YYYY"' );
+
+                    $.validator.addClassRules({
+                        cc_number: {
+                            required: true,
+                            creditcard: true
                         },
-                        errorPlacement: function(error, element) {
-                            error.delay(1000).appendTo(element.parent($('div.form-group')));
+                        cc_exp_month: {
+                            required: true,
+                            rangelength: [5, 7],
+                            ccExpire: true
+                        },
+                        cvc: {
+                            required: true,
+                            number: true,
+                            rangelength: [3, 4]
                         }
                     });
 
-                    $.validator.addClassRules('cc_number', {
-                         required: true,
-                         creditcard: true
-                    });
-
-                    form.submit(function(e) {
-                        e.preventDefault();
-                        var $form = $(e.target);
-
-                        Stripe.card.createToken($form, function(status, response) {
-                            if (response.error) {
-                                $form.find('.payment-errors').text(response.error.message).show();
-                            } else {
-                                $form.find('input[name="stripeToken"]').remove();
-                                $form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
-                                // You can submit the form to back-end as usual
-
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/make-loan/create-loan/',
-                                    data: $form.serialize(),
-                                    success: function(response) {
-                                        loanFormSuccess();
-                                    },
-                                    error: function(response) {
-                                        $form.find('.payment-errors').text(response.responseJSON.message).show();
-                                    }
-                                });
-                            }
-                        });
-                        return false;
+                    formValidator = form.validate({
+                        errorPlacement: function(error, element) {
+                            error.delay(3500).appendTo(element.parent($('div.form-group')));
+                        },
+                        submitHandler: function(form, e) {
+                            form.submit(function(e) {
+                                e.preventDefault();
+                                if (formValidator.errorList.length === 0) {
+                                    Stripe.card.createToken(form, function(status, response) {
+                                        if (response.error) {
+                                            form.find('.payment-errors').text(response.error.message).show();
+                                        } else {
+                                            form.find('input[name="stripeToken"]').remove();
+                                            form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: '/process-loan/',
+                                                data: form.serialize(),
+                                                success: function(response) {
+                                                    loanFormSuccess();
+                                                },
+                                                error: function(response) {
+                                                    form.find('.payment-errors').text(response.message).show();
+                                                }
+                                            });
+                                        }
+                                    });
+                                } else {
+                                    form.find('.payment-errors').text('Please check your work and try again.').show();
+                                }
+                                return false;
+                            });
+                        }
                     });
                 });
             </script>

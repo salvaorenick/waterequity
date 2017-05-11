@@ -120,49 +120,73 @@
 
                     Stripe.setPublishableKey('pk_test_zD30U7Uo8bWMbZXot8UyBkoK');
 
-                    // window.setInterval(function(){
-                        // form = $('#loanForm');
-                        form.validate({
-                            submitHandler: function (form) {
-                                return false;
-                            },
-                            errorPlacement: function(error, element) {
-                                error.delay(1000).appendTo(element.parent($('div.form-group')));
-                            }
-                        });
+                    $.validator.addClassRules('cc_number', {
+                         required: true,
+                         creditcard: true
+                    });
 
-                        $.validator.addClassRules('cc_number', {
-                             required: true,
-                             creditcard: true
-                        });
-                    // }, 1000);
+                    form.validate({
+                        debug: true,
+                        onsubmit: false,
+                        submitHandler: function (form) {
 
-                    form.submit(function(e) {
-                        e.preventDefault();
-                        var $form = $(e.target);
+                            console.log('someting happend');
 
-                        Stripe.card.createToken($form, function(status, response) {
-                            if (response.error) {
-                                $form.find('.payment-errors').text(response.error.message).show();
-                            } else {
-                                $form.find('input[name="stripeToken"]').remove();
-                                $form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
-                                // You can submit the form to back-end as usual
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/process-loan/',
-                                    data: $form.serialize(),
-                                    success: function(response) {
-                                        loanFormSuccess();
-                                    },
-                                    error: function(response) {
-                                        $form.find('.payment-errors').text(response.message).show();
+                            form.submit(function(e) {
+                                Stripe.card.createToken(form, function(status, response) {
+                                    if (response.error) {
+                                        form.find('.payment-errors').text(response.error.message).show();
+                                    } else {
+                                        form.find('input[name="stripeToken"]').remove();
+                                        form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
+                                        // You can submit the form to back-end as usual
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '/process-loan/',
+                                            data: form.serialize(),
+                                            success: function(response) {
+                                                loanFormSuccess();
+                                            },
+                                            error: function(response) {
+                                                form.find('.payment-errors').text(response.message).show();
+                                            }
+                                        });
                                     }
                                 });
-                            }
-                        });
-                        return false;
+                                return false;
+                            });
+                        },
+                        errorPlacement: function(error, element) {
+                            error.delay(1000).appendTo(element.parent($('div.form-group')));
+                        }
                     });
+
+                    // form.submit(function(e) {
+                    //     e.preventDefault();
+                    //     var $form = $(e.target);
+                    //
+                    //         Stripe.card.createToken($form, function(status, response) {
+                    //             if (response.error) {
+                    //                 $form.find('.payment-errors').text(response.error.message).show();
+                    //             } else {
+                    //                 $form.find('input[name="stripeToken"]').remove();
+                    //                 $form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
+                    //                 // You can submit the form to back-end as usual
+                    //                 $.ajax({
+                    //                     type: 'POST',
+                    //                     url: '/process-loan/',
+                    //                     data: $form.serialize(),
+                    //                     success: function(response) {
+                    //                         loanFormSuccess();
+                    //                     },
+                    //                     error: function(response) {
+                    //                         $form.find('.payment-errors').text(response.message).show();
+                    //                     }
+                    //                 });
+                    //             }
+                    //         });
+                    //     return false;
+                    // });
                 });
             </script>
         </div>

@@ -21,29 +21,29 @@ Make an Impact
             <h2>Make a loan</h2>
             <form id="loanForm" class="form-horizontal text-left center-block">
                 {% csrf_token %}
-                <div class="form-group row" id="amount" data-toggle="buttons">
+                <div class="form-group row" data-toggle="buttons">
                     <label class="radio-inline radio btn col-xs-1" for="radio-value">
-                        <input type="radio" min="100" max="500000" class="amount" name="amount" id="radio-value" data-stripe="amount" /> <h2 style="position: absolute; right: -10px;top: 5px;">$</h2>
+                        <input type="radio" min="100" class="amount" name="amount" id="radio-value" data-stripe="amount" /> <h2 class="dollar-only">$</h2>
                     </label>
-                    <div class="col-xs-3">
-                        <input min="100" type="text" class="form-control input-value" style="margin-top: -8px" />
+                    <div class="col-sm-3 col-xs-6">
+                        <input min="100" max="500000" type="text" class="form-control input-value" />
                     </div>
-                    <span class="col-xs-7" style="padding: 0">$100 is all it takes to make an impact</span>
+                    <span class="col-sm-7 col-xs-11" style="padding-right: 0">$100 is all it takes to make an impact</span>
                     <br>
                     <label class="radio-inline radio btn col-xs-4 active" for="230">
                         <input type="radio" name="amount" id="230" data-stripe="amount" value="230" checked /> <h2>$230</h2>
                     </label>
-                    <span class="col-xs-7" style="padding: 0; margin-top: -9px">Brings water or the dignity of a toilet to a family living in the crisis</span>
+                    <span class="col-sm-7 col-xs-12" style="padding-right: 0; margin-top: -9px">Brings water or the dignity of a toilet to a family living in the crisis</span>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-8">
+                    <div class="col-sm-8">
                         <label>Card Number:</label>
                         <input class="form-control cc_number"
                             data-stripe="number"
                             autocomplete="cc-number"
                             required creditcard />
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-sm-4">
                         <label>Expires:</label>
                         <input class="form-control cc_exp_month"
                             placeholder="MM/YY"
@@ -54,7 +54,7 @@ Make an Impact
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-md-8">
+                    <div class="col-sm-8">
                         <label>Name on Card:</label>
                         <input type="text"
                             class="form-control name"
@@ -63,7 +63,7 @@ Make an Impact
                             name="name"
                             required />
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-sm-4">
                         <label>Card Code:</label>
                         <input type="text"
                             class="form-control cvc"
@@ -99,13 +99,15 @@ Make an Impact
                             data-stripe="address_country" />
                     </div>
                 </div>
-                <div class="form-group checkbox row" data-toggle="buttons"style="margin-top: 34px">
-                    <label class="btn check-inline check color--white center-block" for="agree">
-                      <input type="checkbox" value="true" name="accept-terms" id="agree" required />
-                      <span class="col-xs-12">I accept terms of agreement </span>
-                    </label>
+                <div class="row" style="margin-top: 34px">
+                    <div class="form-group checkbox col-sm-8 col-xs-12 center-block" data-toggle="buttons" >
+                        <label class="btn check-inline check color--white center-block" for="agree">
+                          <input type="checkbox" value="true" name="accept-terms" id="agree" required />
+                          <span class="col-xs-12 accept">I accept terms of agreement </span>
+                        </label>
+                    </div>
                 </div>
-                <a style="margin:-52px 0px 20px 40px;display:block;position:relative" href="/terms-of-use/" target="_blank">WaterEquity Terms of Use Agreement</a>
+                <a href="/terms-of-use/" class="terms" target="_blank">WaterEquity Terms of Use Agreement</a>
                 <div class="payment-errors alert alert-warning collapse"></div>
                 <div class="form-group text-center ">
                     <input type="submit" class="btn lend" value="Confirm Payment" />
@@ -115,56 +117,76 @@ Make an Impact
                 <h2>Thank you for your loan!</h2>
                 <p>Please check your inbox for a confirmation email. If you have any questions please email us at <a href="mailto:info@waterequity.org" class="color--white">info@waterequity.org</a> or call <a href="tel:8168008100" class="color--white">(816) 800-8100</a>.</p>
             </div>
-
             <script src="https://js.stripe.com/v2/"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.min.js"></script>
             <script>
+                var formValidator;
                 $(function() {
                     var form = $('#loanForm');
 
-                    Stripe.setPublishableKey('{{stripe_public_key}}');
+                    Stripe.setPublishableKey('pk_test_zD30U7Uo8bWMbZXot8UyBkoK');
 
-                    form.validate({
-                        submitHandler: function (form) {
-                            return false;
+                    $.validator.addMethod('ccExpire', function (value, element) {
+                        var today = new Date(),
+                            startDate = new Date(today.getFullYear(), today.getMonth(), 1),
+                            dateEntered = value,
+                            slash = dateEntered.indexOf('/'),
+                            parsableDateEntered = dateEntered.substr( 0, slash ) + '/1' + dateEntered.substr( slash );
+
+                        return Date.parse(startDate) <= Date.parse(parsableDateEntered);
+                    }, '"MM/YY" or "MM/YYYY"' );
+
+                    $.validator.addClassRules({
+                        cc_number: {
+                            required: true,
+                            creditcard: true
                         },
-                        errorPlacement: function(error, element) {
-                            error.delay(1000).appendTo(element.parent($('div.form-group')));
+                        cc_exp_month: {
+                            required: true,
+                            rangelength: [5, 7],
+                            ccExpire: true
+                        },
+                        cvc: {
+                            required: true,
+                            number: true,
+                            rangelength: [3, 4]
                         }
                     });
 
-                    $.validator.addClassRules('cc_number', {
-                         required: true,
-                         creditcard: true
-                    });
-
-                    form.submit(function(e) {
-                        e.preventDefault();
-                        var $form = $(e.target);
-
-                        Stripe.card.createToken($form, function(status, response) {
-                            if (response.error) {
-                                $form.find('.payment-errors').text(response.error.message).show();
-                            } else {
-                                $form.find('input[name="stripeToken"]').remove();
-                                $form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
-                                // You can submit the form to back-end as usual
-
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/make-loan/create-loan/',
-                                    data: $form.serialize(),
-                                    success: function(response) {
-                                        loanFormSuccess();
-                                    },
-                                    error: function(response) {
-                                        $form.find('.payment-errors').text(response.responseJSON.message).show();
-                                    }
-                                });
-                            }
-                        });
-                        return false;
+                    formValidator = form.validate({
+                        errorPlacement: function(error, element) {
+                            error.delay(3500).appendTo(element.parent($('div.form-group')));
+                        },
+                        submitHandler: function(form, e) {
+                            form.submit(function(e) {
+                                e.preventDefault();
+                                if (formValidator.errorList.length === 0) {
+                                    Stripe.card.createToken(form, function(status, response) {
+                                        if (response.error) {
+                                            form.find('.payment-errors').text(response.error.message).show();
+                                        } else {
+                                            form.find('input[name="stripeToken"]').remove();
+                                            form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: '/process-loan/',
+                                                data: form.serialize(),
+                                                success: function(response) {
+                                                    loanFormSuccess();
+                                                },
+                                                error: function(response) {
+                                                    form.find('.payment-errors').text(response.message).show();
+                                                }
+                                            });
+                                        }
+                                    });
+                                } else {
+                                    form.find('.payment-errors').text('Please check your work and try again.').show();
+                                }
+                                return false;
+                            });
+                        }
                     });
                 });
             </script>

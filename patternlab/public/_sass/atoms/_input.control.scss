@@ -147,14 +147,6 @@ label.btn {
     outline: none !important;
     color: currentColor;
     font-size: 18px;
-    h2 { // snoflake for lend money form
-        margin: -20px 0 0 21.33333%;
-        font-family: $font-heading;
-
-        @media (max-width: 768px) {
-            margin-left: 8.33333%;
-        }
-    }
     span {
         margin-top: -4px;
         white-space: normal;
@@ -184,7 +176,6 @@ label.btn {
         margin: 8px 0 16px 16px !important;
         padding-left: 24px;
         display: block;
-        height: 52px;
         &::before, // the border provider
         &::after { // the middle mark
             content: "";
@@ -202,6 +193,10 @@ label.btn {
         &.active::before {
             background-color: white;
             border-color: $brand-blue;
+        }
+
+        @media (max-width: 768px) {
+            margin-bottom: 8px;
         }
     }
 

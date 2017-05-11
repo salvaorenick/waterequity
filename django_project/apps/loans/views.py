@@ -14,8 +14,11 @@ def createLoanView(request):
     try:
         amount = str(int(float(request.POST['amount']) * 100))
         emailAddress = request.POST['email-address']
-        stripeToken = request.POST['stripeToken'],
-        accept = request.POST['accept-terms'],
+        stripeToken = request.POST['stripeToken']
+        accept = request.POST['accept-terms']
+
+        # if int(amount) >= 10000 and int(amount) <= 50000000:
+        #     return JsonResponse({'message': 'Sorry, we ask that the loan is at least $100 and a maximum of $500,000.'}, status=501)
 
     except Exception:
         return JsonResponse({'message': 'Please fill out all the fields.'}, status=501)
@@ -29,7 +32,7 @@ def createLoanView(request):
     except stripe.error.StripeError as e:
         body = e.json_body
         err = body['error']
-        return JsonResponse({'message': err['message'] }, status=401)
+        return JsonResponse({'message': err['message']}, status=401)
 
     try:
         stripe.Charge.create(

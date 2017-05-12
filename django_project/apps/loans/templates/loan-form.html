@@ -26,26 +26,28 @@ Make an Impact
                         <input type="radio" min="100" class="amount" name="amount" id="radio-value" data-stripe="amount" /> <h2 class="dollar-only">$</h2>
                     </label>
                     <div class="col-sm-3 col-xs-6">
-                        <input min="100" max="500000" type="text" class="form-control input-value" />
+                        <input type="tel" class="form-control input-value" />
                     </div>
-                    <span class="col-sm-7 col-xs-11" style="padding: 0">$100 is all it takes to make an impact</span>
+                    <span class="col-sm-7 col-xs-11" style="padding-right: 0">$100 is all it takes to make an impact</span>
                     <br>
                     <label class="radio-inline radio btn col-xs-4 active" for="230">
-                        <input type="radio" name="amount" id="230" data-stripe="amount" value="230" checked /> <h2>$230</h2>
+                        <input class="averageAmount" type="radio" name="amount" id="230" data-stripe="amount" value="230" checked /> <h2>$230</h2>
                     </label>
-                    <span class="col-sm-7 col-xs-12" style="padding: 0; margin-top: -9px">Brings water or the dignity of a toilet to a family living in the crisis</span>
+                    <span class="col-sm-7 col-xs-12" style="padding-right: 0; margin-top: -9px">Brings water or the dignity of a toilet to a family living in the crisis</span>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-8">
                         <label>Card Number:</label>
-                        <input class="form-control cc_number"
+                        <input type="tel"
+                            class="form-control cc-number"
                             data-stripe="number"
                             autocomplete="cc-number"
                             required creditcard />
                     </div>
                     <div class="col-sm-4">
                         <label>Expires:</label>
-                        <input class="form-control cc_exp_month"
+                        <input type="text"
+                            class="form-control cc-exp"
                             placeholder="MM/YY"
                             data-stripe="exp"
                             autocomplete="cc-exp"
@@ -66,7 +68,7 @@ Make an Impact
                     <div class="col-sm-4">
                         <label>Card Code:</label>
                         <input type="text"
-                            class="form-control cvc"
+                            class="form-control cc-cvc"
                             placeholder="CVC"
                             autocomplete="off"
                             required />
@@ -103,7 +105,7 @@ Make an Impact
                     <div class="form-group checkbox col-sm-8 col-xs-12 center-block" data-toggle="buttons" >
                         <label class="btn check-inline check color--white center-block" for="agree">
                           <input type="checkbox" value="true" name="accept-terms" id="agree" required />
-                          <span class="accept" style="padding-left: 10px;display: inline-block">I accept the terms of agreement </span>
+                          <span class="col-xs-12 accept">I accept terms of agreement </span>
                         </label>
                     </div>
                 </div>
@@ -117,51 +119,101 @@ Make an Impact
                 <h2>Thank you for your loan!</h2>
                 <p>Please check your inbox for a confirmation email. If you have any questions please email us at <a href="mailto:info@waterequity.org" class="color--white">info@waterequity.org</a> or call <a href="tel:8168008100" class="color--white">(816) 800-8100</a>.</p>
             </div>
-            <script src="https://js.stripe.com/v2/"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.min.js"></script>
+            <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+            <script src="http://js.stripe.com/v2/"></script>
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
             <script>
                 var formValidator;
-                $(function() {
+
+                $(function($) {
                     var form = $('#loanForm');
 
                     Stripe.setPublishableKey('{{stripe_public_key}}');
 
-                    $.validator.addMethod('ccExpire', function (value, element) {
-                        var today = new Date(),
-                            startDate = new Date(today.getFullYear(), today.getMonth(), 1),
-                            dateEntered = value,
-                            slash = dateEntered.indexOf('/'),
-                            parsableDateEntered = dateEntered.substr( 0, slash ) + '/1' + dateEntered.substr( slash );
+                    $.validator.addMethod('emailAddress', function (value, element) {
+                        var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                        return regex.test(element.value);
 
-                        return Date.parse(startDate) <= Date.parse(parsableDateEntered);
-                    }, '"MM/YY" or "MM/YYYY"' );
+                    }, 'Incorrectly formatted email address. We will you use this to track your loan.');
 
-                    $.validator.addClassRules({
-                        cc_number: {
-                            required: true,
-                            creditcard: true
-                        },
-                        cc_exp_month: {
-                            required: true,
-                            rangelength: [5, 7],
-                            ccExpire: true
-                        },
-                        cvc: {
-                            required: true,
-                            number: true,
-                            rangelength: [3, 4]
-                        }
+                    $.validator.setDefaults({
+                        ignore: 'amount'
                     });
 
                     formValidator = form.validate({
+                        rules: {
+                            'email-address': {
+                                emailAddress: true,
+                                required: true
+                            }
+                        },
                         errorPlacement: function(error, element) {
-                            error.delay(3500).appendTo(element.parent($('div.form-group')));
+                            var obj = $('[name="'+element.attr('name')+'"]');
+                            if (obj.length > 1) {
+                                error.delay(1500).insertAfter(obj.last().parent());
+                            } else {
+                                error.delay(1500).appendTo(element.parent($('div.form-group')));
+                            }
                         }
                     });
 
+                    function classToggler(element, trueOrFalse) {
+                        if (trueOrFalse) {
+                            $(element).removeClass('error');
+                        } else {
+                            $(element).addClass('error');
+                        }
+                    }
+
+                    function regexErrorToggler(element, regex) {
+                        if (regex.test(element.value) === false || element.value < 2 ) {
+                            classToggler(element, false);
+                        } else {
+                            classToggler(element, true);
+                        }
+                    }
+
+                    function messageToggler(element, message) {
+                        if ($(element).hasClass('error')){
+                            $(element).after('<label class="error">' + message + '</label>')
+                        }
+                    }
+
+                    $('.input-value').focusout(function() {
+                        if (this.value <= 500000 && this.value >= 100) {
+                            classToggler(this, true);
+                            $(this).next('label.error').remove();
+                        } else {
+                            classToggler(this, false);
+                            $(this).after('<label class="error">Please loan between $100 and $500,000.</label>');
+                        }
+                    });
+
+                    $('.radio').on('click', function(){
+                        if ($(this).find('input').attr('value') >= 100 && $(this).find('input').attr('value') <= 500000) {
+                            $(this).parent('.form-group').find('label.error').remove();
+                            $(this).parent('.form-group').find('input.error').removeClass('error');
+                        }
+                    });
+
+                    $('[data-numeric]').payment('restrictNumeric');
+                    $('.cc-exp').payment('formatCardExpiry');
+                    $('.cc-number').payment('formatCardNumber');
+                    $('.cc-cvc').payment('formatCardCVC');
+
+                    $.fn.toggleInputError = function(erred) {
+                        this.toggleClass('error', erred);
+                        return this;
+                    };
+
                     form.submit(function(e) {
                         e.preventDefault();
+
+                        $('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()));
+                        $('.cc-exp').toggleInputError(!$.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')));
+                        $('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType));
+
                         if (formValidator.errorList.length === 0) {
                             var $form = $(e.target);
                             Stripe.card.createToken($form, function(status, response) {

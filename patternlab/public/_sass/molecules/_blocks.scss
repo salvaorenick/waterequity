@@ -492,6 +492,7 @@ a.fill {
     form {
         position: relative;
         top: 24px;
+        max-width: 590px;
     }
     input.form-control {
         height: 44px;
@@ -574,12 +575,14 @@ a.fill {
         }
     }
     a.terms {
-        margin: -40px 0 20px 88px;
+        margin: -40px 0 20px -22px;
         display: block;
         position: relative;
+        text-align: center;
 
         @media (max-width: 768px) {
-            margin: 0;
+            margin: -10px 0 0;
+            text-align: left;
         }
     }
     .center-block {

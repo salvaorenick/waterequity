@@ -335,6 +335,14 @@ a.fill {
         }
     }
 
+    .radio-inline {
+
+        input[type="radio"] {
+            margin-top: 5px;
+        }
+
+    }
+
     @media (min-width: 768px) {
         .modal-dialog {
             width: calc(100% - 10px);

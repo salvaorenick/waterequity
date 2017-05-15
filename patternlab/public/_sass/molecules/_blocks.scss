@@ -336,9 +336,11 @@ a.fill {
     }
 
     .radio-inline {
-
+        white-space: nowrap;
         input[type="radio"] {
-            margin-top: 5px;
+            margin-top: 8px;
+            float: left;
+            position: relative;
         }
 
     }

@@ -126,12 +126,26 @@
         margin-bottom: 0;
     }
 
+    &.vertical-center-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
     @media (max-width: 991px) {
         border-bottom: $light-grey 1px solid;
         min-height: 400px;
         height: inherit;
         padding-top: 30px;
         padding-bottom: 35px;
+        ul {
+            list-style-position: inside;
+            padding-left: 0;
+        }
+        li {
+            span {
+                margin-left: -3%;
+            }
+        }
     }
 }
 
@@ -642,8 +656,20 @@ a.fill {
     a {
         &.carousel-control-next,
         &.carousel-control-prev {
-            &:hover{
+            &:hover {
                 text-decoration: none;
+            }
+        }
+    }
+    &#how-your-loan-works-carousel {
+        @media (max-width: 768px) {
+            a.carousel-control-next {
+                float: none !important;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .carousel-caption {
+                text-align: center;
             }
         }
     }

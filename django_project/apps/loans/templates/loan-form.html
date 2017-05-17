@@ -101,7 +101,7 @@ Make an Impact
             <div class="col-md-9 center-block padding-54 background--light-blue color--white thanks">
                 <h2>Thank you for your loan!</h2>
                 <p>Please check your inbox for a confirmation email. If you have any questions please email us at <a href="mailto:info@waterequity.org" class="color--white">info@waterequity.org</a> or call <a href="tel:8168008100" class="color--white">(816) 800-8100</a>.</p>
-                <p>You can help support WaterCredit, the solution powering our microfinance partners, through a donation to <a href="https://contribute.water.org/donate" target="_blank" class="color--white">Water.org</a>. Click <a href="https://contribute.water.org?utm_campaign=waterequity&utm_medium=web&utm_source=confirmation" target="_blank" class="color--white">here</a> to donate today.</p>
+                <p>You can help support WaterCredit, the solution powering our microfinance partners, through a donation to <a href="https://contribute.water.org?utm_campaign=waterequity&utm_medium=web&utm_source=confirmation" target="_blank" class="color--white" style="text-decoration: underline">Water.org</a>. Click <a href="https://contribute.water.org?utm_campaign=waterequity&utm_medium=web&utm_source=confirmation" target="_blank" class="color--white" style="text-decoration: underline">here</a> to donate today.</p>
             </div>
             <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
             <script src="https://js.stripe.com/v2/"></script>
@@ -215,7 +215,7 @@ Make an Impact
                        var cardType = $.payment.cardType($('.cc-number').val());
                         $('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()), 'Please double-check your credit card number');
                         $('.cc-exp').toggleInputError(!$.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')), 'Looking for month and year formatted like "MM/YY"');
-$('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType), 'The CVC is usually a 3 or 4 digit number on the back of your card.');
+                        $('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType), 'The CVC is usually a 3 or 4 digit number on the back of your card.');
                        if (formValidator.errorList.length === 0 && $.payment.validateCardNumber($('.cc-number').val()) === true && $.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')) === true && $.payment.validateCardCVC($('.cc-cvc').val(), cardType) === true) {
                             var $form = $(e.target);
                             Stripe.card.createToken($form, function(status, response) {
@@ -230,7 +230,7 @@ $('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), car
                                         url: '/make-loan/create-loan/',
                                         data: $form.serialize(),
                                         success: function(response) {
-                                            loanFormSuccess();
+                                            window.location.href = '/make-loan/thank-you/';
                                         },
                                         error: function(response) {
                                             $form.find('.payment-errors').text(response.responseJSON.message).show();

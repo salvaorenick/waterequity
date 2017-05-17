@@ -669,7 +669,8 @@ a.fill {
                 margin-right: auto;
             }
             .carousel-caption {
-                text-align: center;
+                margin-top: 20px;
+                text-align: center !important;
             }
         }
     }

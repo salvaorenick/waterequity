@@ -349,14 +349,15 @@ a.fill {
         }
     }
 
-    .radio-inline {
+    label.radio-inline.btn.radio {
         white-space: nowrap;
-        input[type="radio"] {
-            margin-top: 8px;
-            float: left;
-            position: relative;
-        }
+        margin: 8px 0 18px !important;
+        line-height: 12px;
+        padding-left: 33px;
 
+        @media (min-width: 768px) {
+            height: 52px;
+        }
     }
 
     @media (min-width: 768px) {

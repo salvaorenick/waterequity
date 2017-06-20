@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% load forms_builder_tags %}
 
+{% block meta %}
+    <meta property="og:title" content="WaterEquity | Make an Impact"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://waterequity.org/make-loan/"/>
+    <meta property="og:image" content="https://waterequity.s3.amazonaws.com/media/filer_public/6e/5a/6e5a0a92-3b24-4cdd-907e-446c0da92efc/make-a-loan-for-the-people.jpg"/>
+    <meta property="og:site_name" content="WaterEquity"/>
+    <meta property="og:description" content="1 in 10 people lack access to safe water. Make a loan to WaterEquity to empower those living in crisis to end the global water crisis."/>
+
+{% endblock %}
 {% block title %} |
 Make an Impact
 {% endblock %}

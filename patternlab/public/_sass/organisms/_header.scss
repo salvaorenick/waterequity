@@ -40,7 +40,7 @@ header {
     }
     .container-fluid {
         padding-top: 1px;
-        padding-bottom: 6px;
+        padding-bottom: 1px;
         align-items: center;
         .navbar-toggle {
             margin-top: 17px;
@@ -84,13 +84,8 @@ header {
 
                         @media (min-width: 1024px) {
                             bottom: -18px;
-                            left: 12px;
-                            width: 100%;
-                        }
-
-                        @media (min-width: 1024px) and (max-width: 1150px) {
-                            left: 7px;
-                            width: calc(100% - 14px);
+                            left: 20px;
+                            width: calc(100% - 40px); // just underline the element w/o the padding.
                         }
                     }
                     ul li a::after {
@@ -129,7 +124,7 @@ header {
                     }
                     &::after {
                         @media (min-width: 1024px) {
-                            width: calc(100% + 15px);
+                            width: calc(100% - 20px);
                         }
                     }
 

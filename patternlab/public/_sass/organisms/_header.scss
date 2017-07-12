@@ -63,6 +63,7 @@ header {
                 > span.dropdown-toggle {
                     color: $brand-dark-blue;
                     text-decoration: none;
+                    line-height: 20px;
                     padding: 8px 20px 9px;
                     display: block;
                     position: relative;
@@ -84,13 +85,23 @@ header {
                         @media (min-width: 1024px) {
                             bottom: -18px;
                             left: 12px;
-                            width: calc(100% - 24px);
+                            width: 100%;
+                        }
+
+                        @media (min-width: 1024px) and (max-width: 1150px) {
+                            left: 7px;
+                            width: calc(100% - 14px);
                         }
                     }
                     ul li a::after {
                         @media (min-width: 1024px) {
                             bottom: -15px;
                         }
+                    }
+
+                    @media (min-width: 1024px) and (max-width: 1150px) {
+                        padding-right: 10px;
+                        padding-left: 10px;
                     }
                 }
                 span.dropdown-toggle {
@@ -121,6 +132,10 @@ header {
                             width: calc(100% + 15px);
                         }
                     }
+
+                    @media (min-width: 1024px) and (max-width: 1150px) {
+                        padding-right: 20px;
+                    }
                 }
                 a:hover,
                 span.dropdown-toggle:hover,
@@ -147,7 +162,7 @@ header {
                 }
 
                 .dropdown-menu {
-                    width: 100%;
+                    width: calc(100% + 2px);
                     border: none;
                     border-radius: 0;
                     background: white;
@@ -188,6 +203,10 @@ header {
                     -ms-transform: scale(1, -1);
                     transform: scale(1, -1);
                     filter: progid:dximagetransform.microsoft.basicimage(rotation=3);
+                }
+
+                @media (min-width: 1024px) and (max-width: 1150px) {
+                    font-size: 14px;
                 }
 
                 @media (max-width: 1023px) {

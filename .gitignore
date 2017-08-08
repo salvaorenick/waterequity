@@ -38,3 +38,13 @@ patternlab.json
 *.sass-cache/
 bower_components/
 node_modules/
+
+#Django
+django_project/static/filer/
+
+#Linux user
+.ipython/
+.linuxbrew/
+.node-gyp/
+.npm/
+.selected_editor

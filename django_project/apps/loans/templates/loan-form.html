@@ -1,9 +1,25 @@
-{{> organisms-header }}
+{% extends "base.html" %}
+{% load forms_builder_tags %}
+
+{% block meta %}
+    <meta property="og:title" content="WaterEquity | Make an Impact"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://waterequity.org/make-loan/"/>
+    <meta property="og:image" content="https://waterequity.s3.amazonaws.com/media/filer_public/6e/5a/6e5a0a92-3b24-4cdd-907e-446c0da92efc/make-a-loan-for-the-people.jpg"/>
+    <meta property="og:site_name" content="WaterEquity"/>
+    <meta property="og:description" content="1 in 10 people lack access to safe water. Make a loan to WaterEquity to empower those living in crisis to end the global water crisis."/>
+
+{% endblock %}
+{% block title %} |
+Make an Impact
+{% endblock %}
+
+{% block body %}
 <div class="container-fluid hero img-bg" style="background-image: url(https://waterequity.s3.amazonaws.com/media/filer_public/6e/5a/6e5a0a92-3b24-4cdd-907e-446c0da92efc/make-a-loan-for-the-people.jpg); background-attachment: fixed">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-12 center-block text-center">
-                <h2 class="color--white ribbon-bg">Make an loan<br>Make an impact</h2>
+                <h2 class="color--white ribbon-bg">Make a loan<br>Make an impact</h2>
             </div>
         </div>
     </div>
@@ -13,25 +29,26 @@
         <div class="col-md-8 center-block text-center">
             <h2>Make a loan</h2>
             <form id="loanForm" class="form-horizontal text-left center-block">
+                {% csrf_token %}
                 <div class="form-group row" data-toggle="buttons">
                     <label class="radio-inline radio btn col-xs-1" for="radio-value">
-                        <input type="radio" min="100" class="amount" name="amount" id="radio-value" data-stripe="amount" /> <h2 class="dollar-only">$</h2>
+                        <input type="radio" min="100" class="amount jqv-ignore" name="amount" id="radio-value" data-stripe="amount" /> <h2 class="dollar-only">$</h2>
                     </label>
-                    <div class="col-sm-3 col-xs-6">
-                        <input type="tel" class="form-control input-value" />
+                    <div class="col-sm-4 col-xs-6">
+                        <input type="tel" class="form-control input-value jqv-ignore" />
                     </div>
-                    <span class="col-sm-7 col-xs-11" style="padding-right: 0">$100 is all it takes to make an impact</span>
+                    <span class="col-sm-6 col-xs-11" style="margin-top: -12px; padding: 0">$100 is all it takes to make an impact</span>
                     <br>
-                    <label class="radio-inline radio btn col-xs-4 active" for="230">
+                    <label class="radio-inline radio btn col-sm-4 col-xs-12 active" for="230">
                         <input class="averageAmount" type="radio" name="amount" id="230" data-stripe="amount" value="230" checked /> <h2>$230</h2>
                     </label>
-                    <span class="col-sm-7 col-xs-12" style="padding-right: 0; margin-top: -9px">Brings water or the dignity of a toilet to a family living in the crisis</span>
+                    <span class="col-sm-6 col-sm-offset-1 col-xs-12" style="padding: 0; margin-top: -9px">Brings water or the dignity of a toilet to a family living in the crisis</span>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-8">
                         <label>Card Number:</label>
                         <input type="tel"
-                            class="form-control cc-number"
+                            class="form-control cc-number jqv-ignore"
                             data-stripe="number"
                             autocomplete="cc-number"
                             required creditcard />
@@ -39,7 +56,7 @@
                     <div class="col-sm-4">
                         <label>Expires:</label>
                         <input type="text"
-                            class="form-control cc-exp"
+                            class="form-control cc-exp jqv-ignore"
                             placeholder="MM/YY"
                             data-stripe="exp"
                             autocomplete="cc-exp"
@@ -49,7 +66,7 @@
 
                 <div class="form-group row">
                     <div class="col-sm-8">
-                        <label>Name on Card:</label>
+                        <label>Name:</label>
                         <input type="text"
                             class="form-control name"
                             autocomplete="name"
@@ -60,7 +77,7 @@
                     <div class="col-sm-4">
                         <label>Card Code:</label>
                         <input type="text"
-                            class="form-control cc-cvc"
+                            class="form-control cc-cvc jqv-ignore"
                             placeholder="CVC"
                             autocomplete="off"
                             required />
@@ -77,31 +94,14 @@
                                 required />
                     </div>
                 </div>
-                <div class="form-group row">
-                    <div class="col-xs-6">
-                        <label>Zip:</label>
-                        <input type="text"
-                            class="form-control"
-                            autocomplete="postal-code"
-                            data-stripe="address_zip" />
-                    </div>
-                    <div class="col-xs-6">
-                        <label>Country:</label>
-                        <input type="text"
-                            class="form-control"
-                            autocomplete="billing country"
-                            data-stripe="address_country" />
-                    </div>
-                </div>
                 <div class="row" style="margin-top: 34px">
-                    <div class="form-group checkbox col-sm-8 col-xs-12 center-block" data-toggle="buttons" >
+                    <div class="form-group checkbox col-sm-2 col-xs-12 " data-toggle="buttons" >
                         <label class="btn check-inline check color--white center-block" for="agree">
                           <input type="checkbox" value="true" name="accept-terms" id="agree" required />
-                          <span class="col-xs-12 accept">I accept terms of agreement </span>
                         </label>
                     </div>
+                    <span class="col-sm-10 col-xs-12 ">I accept and have read the <a href="/terms-of-loan-program-agreement/" target="_blank">WaterEquity Loan Program Agreement</a>, <a href="/terms-of-use/" target="_blank">Terms of Use</a>, and <a href="/privacy-policy/" target="_blank">Privacy Policy</a></span>
                 </div>
-                <a href="/terms-of-use/" class="terms" target="_blank">WaterEquity Terms of Use Agreement</a>
                 <div class="payment-errors alert alert-warning collapse"></div>
                 <div class="form-group text-center ">
                     <input type="submit" class="btn lend" value="Confirm Payment" />
@@ -110,11 +110,12 @@
             <div class="col-md-9 center-block padding-54 background--light-blue color--white thanks">
                 <h2>Thank you for your loan!</h2>
                 <p>Please check your inbox for a confirmation email. If you have any questions please email us at <a href="mailto:info@waterequity.org" class="color--white">info@waterequity.org</a> or call <a href="tel:8168008100" class="color--white">(816) 800-8100</a>.</p>
+                <p>You can help support WaterCredit, the solution powering our microfinance partners, through a donation to <a href="https://contribute.water.org?utm_campaign=waterequity&utm_medium=web&utm_source=confirmation" target="_blank" class="color--white" style="text-decoration: underline">Water.org</a>. Click <a href="https://contribute.water.org?utm_campaign=waterequity&utm_medium=web&utm_source=confirmation" target="_blank" class="color--white" style="text-decoration: underline">here</a> to donate today.</p>
             </div>
-            <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-            <script src="http://js.stripe.com/v2/"></script>
-            <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
-            <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
+            <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+            <script src="https://js.stripe.com/v2/"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
             <script>
                 var formValidator;
 
@@ -130,7 +131,8 @@
                     }, 'Incorrectly formatted email address. We will you use this to track your loan.');
 
                     $.validator.setDefaults({
-                        ignore: 'amount'
+                        ignore: '.jqv-ignore',
+                        onfocusout: function(element) { $(element).valid(); }
                     });
 
                     formValidator = form.validate({
@@ -168,7 +170,10 @@
 
                     function messageToggler(element, message) {
                         if ($(element).hasClass('error')){
+                            $(element).next('label.error').remove();
                             $(element).after('<label class="error">' + message + '</label>')
+                        } else {
+                            $(element).next('label.error').remove();
                         }
                     }
 
@@ -178,6 +183,7 @@
                             $(this).next('label.error').remove();
                         } else {
                             classToggler(this, false);
+                            $(this).next('label.error').remove();
                             $(this).after('<label class="error">Please loan between $100 and $500,000.</label>');
                         }
                     });
@@ -194,19 +200,32 @@
                     $('.cc-number').payment('formatCardNumber');
                     $('.cc-cvc').payment('formatCardCVC');
 
-                    $.fn.toggleInputError = function(erred) {
+                    $.fn.toggleInputError = function(erred, message) {
                         this.toggleClass('error', erred);
+                        messageToggler(this, message)
                         return this;
                     };
 
+                    $('.cc-number').focusout(function() {
+                        $('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()), 'Please double-check your credit card number');
+                    });
+
+                    $('.cc-exp').focusout(function() {
+                        $('.cc-exp').toggleInputError(!$.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')), 'Looking for month and year formatted like "MM/YY"');
+                    });
+
+                    $('.cc-cvc').focusout(function() {
+                       var cardType = $.payment.cardType($('.cc-number').val());
+                       $('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType), 'The CVC is usually a 3 or 4 digit number on the back of your card.');
+                    });
+
                     form.submit(function(e) {
                         e.preventDefault();
-
-                        $('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()));
-                        $('.cc-exp').toggleInputError(!$.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')));
-                        $('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType));
-
-                        if (formValidator.errorList.length === 0) {
+                       var cardType = $.payment.cardType($('.cc-number').val());
+                        $('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()), 'Please double-check your credit card number');
+                        $('.cc-exp').toggleInputError(!$.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')), 'Looking for month and year formatted like "MM/YY"');
+                        $('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType), 'The CVC is usually a 3 or 4 digit number on the back of your card.');
+                       if (formValidator.errorList.length === 0 && $.payment.validateCardNumber($('.cc-number').val()) === true && $.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')) === true && $.payment.validateCardCVC($('.cc-cvc').val(), cardType) === true) {
                             var $form = $(e.target);
                             Stripe.card.createToken($form, function(status, response) {
                                 if (response.error) {
@@ -220,7 +239,7 @@
                                         url: '/make-loan/create-loan/',
                                         data: $form.serialize(),
                                         success: function(response) {
-                                            loanFormSuccess();
+                                            window.location.href = '/make-loan/thank-you/';
                                         },
                                         error: function(response) {
                                             $form.find('.payment-errors').text(response.responseJSON.message).show();
@@ -238,4 +257,4 @@
         </div>
     </div>
 </div>
-{{> organisms-footer }}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load forms_builder_tags %}
+
+{% block title %} |
+Contact WaterEquity
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid hero img-bg" style="background-image: url(https://waterequity.s3.amazonaws.com/media/filer_public/71/d6/71d681f1-323f-4d07-95d6-5b6b7baa2c15/happy-kid.jpg);background-attachment: fixed">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 center-block text-center">
+                <h2 class="color--white ribbon-bg">Contact<br>WaterEquity</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid background--brand-dark-blue">
+    <div class="row">
+        <div class="col-md-12 color--white padding-54">
+            <h2 class="text-center">Request a call or ask a question</h2>
+            <div class="col-md-5 col-md-offset-1 center-block invest-form-special">
+                {% render_built_form id=3 %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid background--medium-blue container_padding--medium img-bg img-big-space" style="background-image: url(https://waterequity.s3.amazonaws.com/media/filer_public/23/1b/231b9d84-5199-4eeb-8136-4bd1f41d4128/happykids.jpg); padding-top: 80px;">
+</div>
+{% endblock %}

@@ -55,6 +55,11 @@
     @media (min-width: 768px) {
         padding-top: 228px !important;
         padding-bottom: 228px !important;
+
+        .news-form & {
+            padding-top: 208px !important;
+            padding-bottom: 184px !important;
+        }
     }
     &.home {
         .container {
@@ -121,12 +126,26 @@
         margin-bottom: 0;
     }
 
+    &.vertical-center-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
     @media (max-width: 991px) {
         border-bottom: $light-grey 1px solid;
         min-height: 400px;
         height: inherit;
         padding-top: 30px;
         padding-bottom: 35px;
+        ul {
+            list-style-position: inside;
+            padding-left: 0;
+        }
+        li {
+            span {
+                margin-left: -3%;
+            }
+        }
     }
 }
 
@@ -248,7 +267,7 @@ a.fill {
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
     position: fixed;
-    z-index: 4;
+    z-index: 5;
     opacity: 0;
     left: -100%;
     transition: opacity 0.5s;
@@ -307,21 +326,75 @@ a.fill {
 }
 
 .modal.news-form {
+
     p,
     label {
         color: $grey;
-    }
-    p {
-        line-height: 1em;
-        margin-bottom: 1em;
+        font-size: 16px;
+        font-weight: inherit;
+        line-height: 1.8em;
     }
     .modal-content {
-        padding: 24px;
+        padding: 5px;
+    }
+    .modal-dialog {
+        width: calc(100% - 48px);
+        margin: 24px auto;
+        .col-md-4 {
+            padding: 24px;
+            p:first-child {
+                margin-bottom: 8px;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    label.radio-inline.btn.radio {
+        white-space: nowrap;
+        margin: 8px 0 18px !important;
+        line-height: 12px;
+        padding-left: 33px;
+
+        @media (min-width: 768px) {
+            height: 52px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .modal-dialog {
+            width: calc(100% - 10px);
+            max-width: 838px;
+            left: 50%;
+            margin-left: -419px;
+            display: inline-block;
+            form {
+                float: left;
+            }
+            .col-md-4 {
+                padding: 0 24px;
+            }
+        }
+        &::before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -4px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+        .row-eq-height {
+            display: block;
+        }
+        form {
+            float: none !important;
+            margin: 0 auto 24px;
+        }
     }
 }
 
-.footer,
-.model.news-form {
+.footer {
     .btn {
         background-color: $subtle-blue;
         color: white;
@@ -397,6 +470,208 @@ a.fill {
                 background-color: $light-grey;
                 height: 620px;
                 z-index: 2;
+            }
+        }
+    }
+}
+
+#make-loan {
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @include transition(top, 0.5s, height, 0.5s, padding, 0.5s, bottom, 0.5s);
+    &.fix {
+        position: fixed;
+        z-index: 4;
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        bottom: 0;
+        height: 190px;
+        img {
+            margin-top: 22px;
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            transform: rotate(180deg);
+
+            @include transition(margin, 0.2s);
+        }
+        .thanks {
+            margin-top: 100%;
+        }
+        &:hover {
+            cursor: pointer;
+            .btn {
+                color: $light-blue;
+                background-color: white;
+            }
+        }
+    }
+    span {
+        @media (max-width: 768px) {
+            margin: -12px 0 16px !important;
+            padding-left: 15px !important;
+        }
+    }
+    form {
+        position: relative;
+        top: 24px;
+        max-width: 590px;
+    }
+    input.form-control {
+        height: 44px;
+        font-size: 18px;
+    }
+    .col-sm-3.col-xs-6 {
+        position: static;
+        label.error {
+            position: absolute;
+            width: 455px;
+            top: 38px;
+        }
+        input.error {
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            padding: 0 6px 0 8px;
+        }
+    }
+    input {
+        &.input-value {
+            padding-left: 22px;
+            padding-top: 4px;
+            margin-top: -8px;
+            margin-left: -6px;
+            font-size: 30px !important;
+            font-family: "GothamBold", sans-serif;
+
+            @media (max-width: 768px) {
+                padding-left: 34px;
+                margin-left: -20px;
+            }
+        }
+        &.error {
+            background-color: rgb(250, 255, 189);
+        }
+    }
+    label {
+        h2 {
+            margin: -20px 0 0 21.33333%;
+            font-family: $font-heading;
+
+            &.dollar-only {
+                position: absolute;
+                right: -32px;
+                top: 6px;
+                z-index: 2;
+
+                @media (max-width: 768px) {
+                    right: -24px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                margin-left: 26px;
+            }
+        }
+        &.col-xs-1 {
+            @media (max-width: 580px) {
+                width: 48px;
+            }
+        }
+        &.btn {
+            &.check,
+            &.radio {
+                @media (min-width: 768px) {
+                    height: 52px;
+                }
+            }
+        }
+        &.error {
+            &::before {
+                content: '*';
+                color: red;
+                font-size: 40px;
+                position: relative;
+                top: 16px;
+            }
+        }
+    }
+    a.terms {
+        margin: -40px 0 20px -22px;
+        display: block;
+        position: relative;
+        text-align: center;
+
+        @media (max-width: 768px) {
+            margin: -10px 0 0;
+            text-align: left;
+        }
+    }
+    .center-block {
+        margin-left: auto;
+        margin-right: auto;
+        span.accept {
+            margin-top: -5px !important;
+
+            @media (max-width: 768px) {
+                margin: -5px 0 12px 22px !important;
+            }
+        }
+        .center-block {
+            @media (max-width: 768px) {
+                padding-left: 0;
+            }
+        }
+
+    }
+    .thanks {
+        display: none;
+        opacity: 0;
+        padding: 34px 54px;
+        margin-top: calc(50% - 240px);
+
+        @include transition(margin, 0.2s, opacity, 0.5s);
+
+        @media (max-width: 768px) {
+            margin-top: 80px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .form-group .col-md-8 {
+            margin-bottom: 15px;
+        }
+        span.col-md-6 {
+            clear: left;
+            float: left;
+            margin-bottom: 44px;
+            margin-top: -15px;
+        }
+    }
+}
+
+.carousel {
+    a {
+        &.carousel-control-next,
+        &.carousel-control-prev {
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+    &#how-your-loan-works-carousel {
+        @media (max-width: 768px) {
+            a.carousel-control-next {
+                float: none !important;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .carousel-caption {
+                margin-top: 20px;
+                text-align: center !important;
             }
         }
     }

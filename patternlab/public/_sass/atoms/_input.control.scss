@@ -3,10 +3,8 @@
     INPUT.CONTROL
     Friendlier HTML form controls with a little CSS magic.
 \*----------------------------------------------------------------------------*/
-
 /*  Variables
 \*----------------------------------------------------------------------------*/
-
 $control-width: 2.5em !default;
 $control-space: $control-width*1.5 !default;
 $control-line-height: $control-space !default;
@@ -30,29 +28,35 @@ form {
     p {
         margin-bottom: 12px;
         position: relative;
+
         span {
             position: absolute;
             top: 9px;
             right: -10px;
         }
+
         label.radio-inline span {
             display: none;
         }
     }
+
     ul {
         list-style-type: none;
         margin-left: -40px;
+
         li {
             float: left;
             margin-right: 16px;
         }
     }
+
     .color--white & {
         input,
         textarea {
             color: $brand-dark-blue;
         }
     }
+
     textarea {
         text-align: left;
         height: 80px;
@@ -60,80 +64,30 @@ form {
         max-width: 100%;
         width: 100%;
     }
-    input[type="text"],
+
     input[type="email"],
     input[type="number"],
-    input[type="password"] {
+    input[type="password"],
+    input[type="text"] {
         width: 100%;
     }
+
     input[type="submit"] {
         display: block;
         margin-left: auto;
         margin-right: auto;
     }
 }
-
-
-
 /*  Component
 \*----------------------------------------------------------------------------*/
-
 form {
     width: 100%;
     max-width: 540px;
     margin: 0 auto;
-    input {
+
+    input:not(.lend) {
         display: block;
         width: 100%;
-    }
-    p {
-        .news-form & {
-            text-align: center;
-            line-height: 1em;
-        }
-    }
-    .news-form & {
-        .radio input[type="radio"],
-        .radio-inline input[type="radio"] {
-            margin-top: 4px;
-        }
-    }
-}
-
-input {
-    .news-form & {
-        position: relative;
-        display: inline-block;
-        padding-left: 0;
-        color: white;
-        line-height: $control-line-height;
-        cursor: pointer;
-        outline: none;
-        text-align: center;
-        border: none;
-        background-color: $control-background-color;
-        margin-bottom: 16px;
-        &:placeholder {
-            color: $medium-blue;
-            opacity: 1;
-            text-align: center;
-        }
-        &::-webkit-input-placeholder {
-            color: $medium-blue;
-        }
-        &[type="submit"] {
-            background-color: $subtle-blue;
-            line-height: 1em;
-            color: white;
-            border-color: $subtle-blue;
-            padding: 24px;
-            &:hover,
-            &:active {
-                background-color: white;
-                color: $brand-dark-blue;
-                border: solid 1px $brand-dark-blue;
-            }
-        }
     }
 }
 
@@ -143,7 +97,6 @@ input {
     }
     padding-bottom: 54px !important;
 }
-
 /**
  * Actual input, needs to be hidden but not removed from rendering
  */
@@ -152,13 +105,9 @@ input {
     opacity: 0;
     z-index: -1;
 }
-
-
-
 /*  Indicator
     Visual representation of the input
 \*----------------------------------------------------------------------------*/
-
 .control__indicator {
     position: absolute;
     top: $control-line-height/2;
@@ -174,137 +123,130 @@ input {
     background-color: $control-background-color;
     user-select: none;
 }
-
-
-
 /*  States
 \*----------------------------------------------------------------------------*/
-
 /**
  * Checked/active
  */
-.control.is-checked .control__indicator,
-.control__input:checked ~ .control__indicator,
-.control__input:active ~ .control__indicator {
-    color: $control-background-color;
-    border-color: $control-focus-color;
-}
-
-
 /**
  * Focus
  */
-.control__input:focus,
-.control.is-checked .control__input:focus,
-.control__input:checked:focus,
-.control__input:active:focus {
-    ~ .control__indicator {
-        border-color: $control-focus-color;
-    }
-}
-
-
 /**
  * Disabled
  */
-.control.is-disabled {
-    cursor: not-allowed;
-}
-
-.control.is-disabled .control__indicator,
-.control__input:disabled ~ .control__indicator,
-.control.is-checked.is-disabled .control__indicator,
-.control .control__input:checked:disabled ~ .control__indicator {
-    border-color: $control-disabled-color;
-    background-color: $control-disabled-color;
-    cursor: not-allowed;
-}
-
-.control.is-disabled .control__label,
-.control__input:disabled ~ .control__label {
-    color: $control-disabled-color;
-    cursor: not-allowed;
-}
-
-
-
 /*  Modifiers
 \*----------------------------------------------------------------------------*/
-
 /**
- * Checkbox
- */
-.control--checkbox {
-    .control__indicator {
+ * Radio & Checkbox
+*/
 
-        &::after {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-            width: 0;
-            height: 0;
-            content: " ";
-            background-color: transparent;
+label.btn {
+    border: none;
+    padding: 0;
+    text-align: left;
+    outline: none !important;
+    color: currentColor;
+    font-size: 18px;
+    span {
+        margin-top: -4px;
+        white-space: normal;
+        &.wrap {
+            margin-top: -21px;
         }
     }
 
-    &.is-checked .control__indicator,
-    .control__input:checked ~ .control__indicator {
-        border-color: $control-focus-color;
+    .form-horizontal & {
+        clear: both;
+    }
 
+    &.active,
+    &:active {
+        box-shadow: none;
+    }
+    &:hover,
+    &:focus,
+    &.focus {
+        background-color: transparent !important;
+        color: currentColor !important;
+    }
+
+    &.check,
+    &.radio {
+        position: relative;
+        margin: 8px 0 16px 16px !important;
+        padding-left: 24px;
+        display: block;
+        &::before, // the border provider
+        &::after { // the middle mark
+            content: "";
+            position: absolute;
+
+            @include transition(background-color 0.3s, opacity 0.3s);
+        }
+        &::before {
+            height: 28px;
+            width: 28px;
+            top: -8px;
+            left: 0;
+            border: 3px solid currentColor;
+        }
+        &.active::before {
+            background-color: white;
+            border-color: $brand-blue;
+        }
+
+        @media (max-width: 768px) {
+            margin-bottom: 8px;
+        }
+    }
+
+    &.radio {
+        border-radius: 50%;
+        &::after,
+        &::before {
+            border-radius: 50%;
+        }
+        &.active::after {
+            background-color: $brand-blue;
+            height: 14px;
+            width: 14px;
+            top: -1px;
+            left: 7px;
+        }
+    }
+    &.check {
+        label.error {
+            position: absolute;
+            top: 14px;
+            left: -20px;
+        }
+        &::before {
+            top: -6px;
+        }
         &::after {
-            background-color: $control-focus-color;
-            width: 80%;
-            height: 80%;
+            height: 18px;
+            width: 18px;
+            top: -4px;
+            left: 5px;
+            background-color: transparent;
+            opacity: 0;
+        }
+        &.active::after {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOC4wNSAxNC41OCI+PHRpdGxlPmNoZWNrPC90aXRsZT48cG9seWdvbiBwb2ludHM9IjEzLjg4IDAgMTguMDUgNC4yIDcuNjYgMTQuNTggMCA3LjAxIDQuMTggMi44MSA3LjYgNi4yNyAxMy44OCAwIiBmaWxsPSIjMDBiMGU3Ii8+PC9zdmc+');
+            background-repeat: no-repeat;
+            background-position: 0 4px;
+            opacity: 1;
         }
     }
 }
-
-
-
-/**
- * Radio
- */
 
 .radio-inline { // bootstrap label wrap input
     margin-bottom: 16px;
 }
 
-.radio input[type="radio"],
-.radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
-.checkbox-inline input[type="checkbox"] {
+.checkbox-inline input[type="checkbox"],
+.radio input[type="radio"],
+.radio-inline input[type="radio"] {
     margin-top: 9px;
 }
-
-//
-// .control--radio {
-//     .control__indicator {
-//         border-radius: 50%;
-//
-//         &::after {
-//             position: absolute;
-//             top: 50%;
-//             left: 50%;
-//             transform: translate(-50%, -50%);
-//             width: 0;
-//             height: 0;
-//             content: " ";
-//             border-radius: 50%;
-//             background-color: transparent;
-//         }
-//     }
-//
-//     &.is-checked .control__indicator,
-//     .control__input:checked ~ .control__indicator {
-//         border-color: $control-focus-color;
-//
-//         &::after {
-//             background-color: $control-focus-color;
-//             width: 80%;
-//             height: 80%;
-//         }
-//     }
-// }

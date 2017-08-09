@@ -1,4 +1,5 @@
-.btn,
+a.btn,
+button.btn,
 input[type="submit"] {
     text-transform: uppercase;
     font: 16px $font-cta;
@@ -63,10 +64,32 @@ input[type="submit"] {
             background-color: white;
         }
     }
+    .background--xtra-light-blue & {
+        margin-top: 22px;
+        color: white;
+        background-color: $medium-blue;
+        border-color: white;
+        &:hover {
+            color: $medium-blue;
+            background-color: white;
+            border-color: $medium-blue;
+        }
+    }
+    .news-form & {
+        background-color: $medium-blue;
+        color: white;
+        border-color: $medium-blue;
+        &:hover,
+        &:active {
+            background-color: $brand-dark-blue;
+            border-color: $brand-dark-blue;
+        }
+    }
 
     @media (max-width: 768px) {
         padding: 20px;
-        width: 100% !important;
+        width: calc(100% - 30px) !important;
+        margin: 15px;
         max-width: 524px;
     }
 }

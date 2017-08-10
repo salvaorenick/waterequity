@@ -104,7 +104,11 @@
                 <a href="/terms-of-use/" class="terms" target="_blank">WaterEquity Terms of Use Agreement</a>
                 <div class="payment-errors alert alert-warning collapse"></div>
                 <div class="form-group text-center ">
-                    <input type="submit" class="btn lend" value="Confirm Payment" />
+                    <!-- <input type="submit" class="btn lend" value="Confirm Payment" /> -->
+                    <button class="btn lend">
+                        <svg class="spin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40.5 43.66"><title>spinningArrow</title><path d="M39.34,14.36h0l-8.34.2a1.71,1.71,0,0,1-1.46-.83,1.92,1.92,0,0,1-.08-1.85l2.3-3.24a17,17,0,0,0-7-1.5A17.35,17.35,0,0,0,7.5,24.5a18.88,18.88,0,0,0,.47,4A1.5,1.5,0,1,1,5,29.13,21.8,21.8,0,0,1,4.5,24.5,20.36,20.36,0,0,1,24.8,4.12a20.05,20.05,0,0,1,8.75,2l1.8-2.53a1.8,1.8,0,0,1,1.51-.82,1.75,1.75,0,0,1,.41,0,1.73,1.73,0,0,1,1.3,1.37L41,11.93a1.74,1.74,0,0,1-.14,1.55A1.83,1.83,0,0,1,39.34,14.36Z" transform="translate(-4.5 -2.77)"/><path d="M24.7,45.18a20.05,20.05,0,0,1-8.79-2l-1.75,2.46a1.8,1.8,0,0,1-1.92.77A1.73,1.73,0,0,1,10.93,45L8.49,37.27a1.75,1.75,0,0,1,.15-1.55,1.83,1.83,0,0,1,1.53-.87h0l8.34-.2a1.81,1.81,0,0,1,1.65,1.13,1.79,1.79,0,0,1-.27,1.82l-2.19,3.06a17,17,0,0,0,7,1.52A17.35,17.35,0,0,0,42,24.8a18.89,18.89,0,0,0-.47-4A1.51,1.51,0,0,1,42.69,19,1.52,1.52,0,0,1,43,19a1.5,1.5,0,0,1,1.46,1.19A21.85,21.85,0,0,1,45,24.8,20.36,20.36,0,0,1,24.7,45.18Z" transform="translate(-4.5 -2.77)"/></svg>
+                        <span>Confirm Payment</span>
+                    </button>
                 </div>
             </form>
             <div class="col-md-9 center-block padding-54 background--light-blue color--white thanks">
@@ -208,9 +212,11 @@
 
                         if (formValidator.errorList.length === 0) {
                             var $form = $(e.target);
+                            $('.lend').prop('disabled', true);
                             Stripe.card.createToken($form, function(status, response) {
                                 if (response.error) {
                                     $form.find('.payment-errors').text(response.error.message).show();
+                                    $('.lend').prop('disabled', false);
                                 } else {
                                     $form.find('input[name="stripeToken"]').remove();
                                     $form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
@@ -224,6 +230,7 @@
                                         },
                                         error: function(response) {
                                             $form.find('.payment-errors').text(response.responseJSON.message).show();
+                                            $('.lend').prop('disabled', false);
                                         }
                                     });
                                 }

@@ -640,6 +640,22 @@ a.fill {
         }
     }
 
+    .btn.lend {
+        .spin {
+            display: none;
+        }
+        &:disabled {
+            .spin {
+                height: 24px;
+                width: 24px;
+                display: inline-block;
+            }
+            span {
+                display: none;
+            }
+        }
+    }
+
     @media (max-width: 991px) {
         .form-group .col-md-8 {
             margin-bottom: 15px;

@@ -10,9 +10,22 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from .settings_local import *
+
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+SECRET_KEY = os.getenv(
+    'DJANGO_SECRET_KEY',
+    'a nice and long secret key string'
+)
+
+DEBUG = os.getenv('DJANGO_DEBUG', False)
+
+FILER_DEBUG = DEBUG
+
+ALLOWED_HOSTS = ['.waterequity.org', 'localhost', os.environ.get('ALLOWED_HOST')]
 
 # http://django-filer.readthedocs.io/en/stable/installation.html
 THUMBNAIL_HIGH_RESOLUTION = True
@@ -64,8 +77,18 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+# Configuration > Software Configurations > Environment Properties.
 
-# DATABASES not here
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('RDS_DB_NAME', 'waterequity'),
+        'USER': os.getenv('RDS_USERNAME', 'waterequity'),
+        'PASSWORD': os.getenv('RDS_PASSWORD', 'waterequity'),
+        'HOST': os.getenv('RDS_HOSTNAME', 'localhost'),
+        'PORT': os.getenv('RDS_PORT', '5432'),
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -109,6 +132,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_BACKEND = 'email_extras.backends.BrowsableEmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # see http://developer.yahoo.com/performance/rules.html#expires
@@ -116,15 +141,16 @@ AWS_HEADERS = {
     'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
     'Cache-Control': 'max-age=94608000',
 }
-# AWS_STORAGE_BUCKET_NAME = 'waterequity'
-# AWS_ACCESS_KEY_ID not here
-# AWS_SECRET_ACCESS_KEY not here
+# TODO update bucket
+AWS_STORAGE_BUCKET_NAME = 'waterequitystage'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-# STATIC_ROOT = '/home/django/django_project/static/'
-# STATIC_URL = 'https://waterequity.s3.amazonaws.com/'
+# TODO update static url
+STATIC_URL = 'https://waterequitystage.s3.amazonaws.com/'
 STATIC_ROOT = STATIC_URL
 STATICFILES_DIRS = [
     '/home/django/django_project/static/',
@@ -136,3 +162,12 @@ STATICFILES_STORAGE = 'django_project.custom_storages.StaticStorage'
 MEDIAFILES_LOCATION = 'media'
 MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 DEFAULT_FILE_STORAGE = 'django_project.custom_storages.MediaStorage'
+
+STRIPE_PUBLIC_KEY = os.getenv(
+    'STRIPE_PUBLIC_KEY',
+    'pk_test_nB7qYNmQzbyRh9tTZMambfaL'
+)
+STRIPE_SECRET_KEY = os.getenv(
+    'STRIPE_SECRET_KEY',
+    'sk_test_u7puIPn81LOPSRTsMEaoXaOI'
+)

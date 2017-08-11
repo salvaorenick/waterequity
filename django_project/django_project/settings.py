@@ -153,7 +153,7 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 STATIC_URL = 'https://waterequitystage.s3.amazonaws.com/'
 STATIC_ROOT = STATIC_URL
 STATICFILES_DIRS = [
-    '/home/django/django_project/static/',
+    os.path.join(BASE_DIR, "static"),
 ]
 STATICFILES_LOCATION = 'static'
 STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)

@@ -4,9 +4,6 @@ PAM==0.1.4
 Pillow==3.4.2
 PyYAML==3.10
 South==0.7.5
-Twisted-Core==13.2.0
-Unidecode==0.04.19
-apt-xapian-index==0.45
 argparse==1.2.1
 boto3==1.4.3
 botocore==1.4.93

@@ -34,9 +34,9 @@ prettytable==0.7.2
 psycopg2==2.4.5
 pyOpenSSL==0.13
 pyserial==2.6
-python-apt==0.9.3.5ubuntu2
+python-apt
 python-dateutil==2.6.0
-python-debian==0.1.21-nmu2ubuntu2
+python-debian
 python-dotenv==0.6.5
 python-gnupg==0.3.9
 rcssmin==1.0.6
@@ -50,4 +50,3 @@ urllib3==1.7.1
 virtualenv==1.11.4
 wheel==0.24.0
 wsgiref==0.1.2
-zope.interface==4.0.5

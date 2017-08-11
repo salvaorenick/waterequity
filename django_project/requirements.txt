@@ -34,7 +34,6 @@ prettytable==0.7.2
 psycopg2==2.4.5
 pyOpenSSL==0.13
 pyserial==2.6
-python-apt
 python-dateutil==2.6.0
 python-debian
 python-dotenv==0.6.5

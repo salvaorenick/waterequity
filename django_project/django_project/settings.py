@@ -141,16 +141,14 @@ AWS_HEADERS = {
     'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
     'Cache-Control': 'max-age=94608000',
 }
-# TODO update bucket
-AWS_STORAGE_BUCKET_NAME = 'waterequitystage'
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME', 'waterequity')
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-# TODO update static url
-STATIC_URL = 'https://waterequitystage.s3.amazonaws.com/'
+STATIC_URL = os.environ.get('STATIC_URL')
 STATIC_ROOT = STATIC_URL
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),

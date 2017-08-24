@@ -42,6 +42,7 @@ node_modules/
 
 #Django
 django_project/static/filer/
+django_project/.env
 
 #Linux user
 .ipython/
@@ -49,3 +50,6 @@ django_project/static/filer/
 .node-gyp/
 .npm/
 .selected_editor
+
+# Elastic Beanstalk Files
+django_project/.elasticbeanstalk/*

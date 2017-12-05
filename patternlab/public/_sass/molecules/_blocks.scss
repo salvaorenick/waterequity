@@ -475,6 +475,19 @@ a.fill {
     }
 }
 
+.staff-no-modal {
+	max-width: 75%;
+	margin-bottom: 30px;
+
+	@media (min-width: 576px) {
+		max-width: 50%;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
 #make-loan {
     background-repeat: no-repeat;
     background-size: cover;

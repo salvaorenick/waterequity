@@ -476,12 +476,18 @@ a.fill {
 }
 
 .staff-no-modal {
-	max-width: 75%;
-	margin: 0 auto 30px;
+    max-width: 75%;
+    margin: 0 auto 30px;
 
-	@media (min-width: 576px) {
-		max-width: 50%;
-	}
+    @media (min-width: 576px) {
+        max-width: 50%;
+    }
+
+    @media (min-width: 1200px) {
+        .staff-no-modal.col-lg-offset-1 {
+            margin-left: 8.33333%;
+        }
+    }
 }
 
 #make-loan {

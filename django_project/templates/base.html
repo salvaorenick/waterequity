@@ -24,10 +24,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
       ga('create', 'UA-86884686-1', 'auto');
       ga('send', 'pageview');
-
     </script>
 
 </head>
@@ -78,7 +76,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </ul>
                         </div>
                     </li>
-                    <li><a href="/about/">About</a></li>
+                    <li>
+                        <span class="dropdown-toggle"
+                            href="/solution/"
+                            type="button"
+                            id="about"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="true">
+                            About </span>
+                        </span>
+                        <div class="dropdown-menu"
+                            aria-labelledby="about">
+                            <ul>
+                                <li><a href="/about/overview/">Overview</a>
+                                </li>
+                                <li><a href="/about/leadership/">Leadership</a>
+                                </li>
+                                <li><a href="/about/our-team/">Our Team</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                     <li><a href="/make-loan/" class="btn">Make a loan</a></li>
                     <li><i></i>
                         <span class="dropdown-toggle"
@@ -96,8 +115,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <li><a href="/investors/">Overview</a>
                                 </li>
                                 <li><a href="/investors/funds/">Funds</a>
-                                </li>
-                                <li><a href="/investors/team/">Team</a>
                                 </li>
                                 <li><a href="/investors/request-info/"> Request Info</a>
                                 </li>

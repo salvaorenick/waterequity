@@ -21,7 +21,7 @@ SECRET_KEY = os.getenv(
     'a nice and long secret key string'
 )
 
-DEBUG = bool(os.getenv('DJANGO_DEBUG', 'False'))
+DEBUG = eval(os.getenv('DJANGO_DEBUG', 'False'))
 
 FILER_DEBUG = DEBUG
 

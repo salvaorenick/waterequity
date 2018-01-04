@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^forms/', include(forms_builder.forms.urls)),
     url(r'^filer/', include('filer.urls')),
-    url(r'^make-loan/', include('apps.loans.urls')),
+    # url(r'^make-loan/', include('apps.loans.urls')),
     url(r'^contact/', TemplateView.as_view(template_name='contact.html')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

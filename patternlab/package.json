@@ -7,8 +7,8 @@
     "babel-preset-es2015": "~6.14.0",
     "browser-sync": "~2.12.3",
     "chalk": "~1.1.1",
-    "customizr": "https://github.com/Modernizr/customizr.git#5de20c60f68fe6e422fc3177c977f0344eebee54",
-    "eslint": "^3.2.2",
+    "customizr": "git+https://github.com/Modernizr/customizr.git#5de20c60f68fe6e422fc3177c977f0344eebee54",
+    "eslint": "^3.19.0",
     "gulp": "~3.9.1",
     "gulp-babel": "~6.1.2",
     "gulp-eslint": "^3.0.1",
@@ -25,9 +25,13 @@
     "patternlab-node": "~2.5.1",
     "postcss-scss": "~0.1.7",
     "run-sequence": "~1.1.5",
-    "styleguidekit-assets-default": "^3.0.0",
+    "styleguidekit-assets-default": "^3.5.2",
     "styleguidekit-mustache-default": "^3.0.0",
     "stylelint": "~6.6.0",
     "stylelint-config-standard": "~9.0.0"
+  },
+  "dependencies": {
+    "marked": "^0.3.9",
+    "requirejs": "^2.3.5"
   }
 }

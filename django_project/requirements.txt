@@ -37,7 +37,7 @@ pyserial==2.6
 python-dateutil==2.6.0
 python-debian
 python-dotenv==0.6.5
-python-gnupg==0.3.9
+python-gnupg==0.4.4
 rcssmin==1.0.6
 requests==2.2.1
 rjsmin==1.0.12

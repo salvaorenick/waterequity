@@ -52,7 +52,7 @@ prettytable==0.7.2
 prompt-toolkit==1.0.9
 psycopg2==2.4.5
 ptyprocess==0.5.1
-Pygments==2.1.3
+Pygments==2.7.4
 pyserial==2.6
 python-dateutil==2.6.1
 python-dotenv==0.6.5

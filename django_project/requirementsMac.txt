@@ -77,7 +77,7 @@ termcolor==1.1.0
 traitlets==4.3.1
 Twisted==16.6.0
 Unidecode==0.4.19
-urllib3==1.7.1
+urllib3==1.26.5
 virtualenv==1.11.4
 wcwidth==0.1.7
 websocket-client==0.44.0

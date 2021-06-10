@@ -1,5 +1,5 @@
 Cheetah==2.4.4
-Django==1.10.2
+Django==2.2.24
 PAM==0.1.4
 Pillow==3.4.2
 PyYAML==3.10

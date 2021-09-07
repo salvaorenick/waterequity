@@ -1,7 +1,7 @@
 Cheetah==2.4.4
 Django==1.10.2
 PAM==0.1.4
-Pillow==3.4.2
+Pillow==8.3.2
 PyYAML==3.10
 South==0.7.5
 argparse==1.2.1

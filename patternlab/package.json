@@ -5,7 +5,7 @@
   "devDependencies": {
     "autoprefixer": "~6.3.6",
     "babel-preset-es2015": "~6.14.0",
-    "browser-sync": "~2.12.3",
+    "browser-sync": "~2.27.10",
     "chalk": "~1.1.1",
     "customizr": "git+https://github.com/Modernizr/customizr.git#5de20c60f68fe6e422fc3177c977f0344eebee54",
     "eslint": "^3.19.0",
